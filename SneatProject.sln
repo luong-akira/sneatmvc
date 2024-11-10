@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sneat.MVC", "Sneat.MVC\Sneat.MVC.csproj", "{3C4DDC4E-A807-498B-95E5-183337AEDDD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sneat.MVC.Tests", "Sneat.MVC.Tests\Sneat.MVC.Tests.csproj", "{1EF8EB44-56E7-4DC6-9C90-CFF6B3FD7DC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C4DDC4E-A807-498B-95E5-183337AEDDD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C4DDC4E-A807-498B-95E5-183337AEDDD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C4DDC4E-A807-498B-95E5-183337AEDDD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C4DDC4E-A807-498B-95E5-183337AEDDD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EF8EB44-56E7-4DC6-9C90-CFF6B3FD7DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EF8EB44-56E7-4DC6-9C90-CFF6B3FD7DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EF8EB44-56E7-4DC6-9C90-CFF6B3FD7DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EF8EB44-56E7-4DC6-9C90-CFF6B3FD7DC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC2CB358-1AAA-451C-B369-BE60FAE8F74C}
+	EndGlobalSection
+EndGlobal

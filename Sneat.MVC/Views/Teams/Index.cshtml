@@ -1,0 +1,377 @@
+﻿@{
+    Layout = "~/Views/Shared/_SneatProLayout.cshtml";
+    ViewData["title"] = "Team management";
+}
+@using Sneat.MVC.Models.DTO.User
+@using Sneat.MVC.Common
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light" @*data-i18n="User"*@>Quản lý dự án /</span> Đội nhóm</h4>
+
+        <div class="card">
+            <h5 class="card-header" @*data-i18n="User"*@>Danh sách đội nhóm</h5>
+            <div class="row mb-2  px-md-4 px-2">
+                <div class="col-md-4 offset-md-0">
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                        <input type="text" class="form-control " id="txt-key-search" placeholder="Tên đội nhóm" onchange="searchTeam()" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mb-2 px-md-4 px-2">
+                <div class="col-md-12">
+                    @if (ss.PermissionTabs.Contains("createTeamTab"))
+                    {
+                        <a title="Thêm đội nhóm" style="float: right" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createApp">
+                            <i class='menu-icon tf-icons bx bx-plus'></i>
+                            Thêm mới
+                        </a>
+                    }
+
+                </div>
+            </div>
+
+            @if (ss.PermissionTabs.Contains("viewTeamTab"))
+            {
+                <div class=" table-responsive px-md-4 px-2" id="list_team">
+                    @{ Html.RenderAction("Search", "Teams", new { Page = 1, search = "" }); }
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Create Team Modal -->
+<div class="modal fade" id="createApp" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-simple modal-upgrade-plan">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body p-2">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center">
+                    <h3 class="mb-3">Tạo mới nhóm</h3>
+                </div>
+                <!-- App Wizard -->
+                <div id="wizard-create-app" class="bs-stepper vertical mt-2 shadow-none border-0">
+                    <div class="bs-stepper-header border-0 p-1">
+                        <div class="step" data-target="#details">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle"><i class="bx bx-file fs-5"></i></span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title text-uppercase">Thông tin</span>
+                                    <span class="bs-stepper-subtitle">Thông tin cơ bản</span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+                        <div class="step" data-target="#database">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle"><i class="bx bx-data fs-5"></i></span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title text-uppercase">Thành viên</span>
+                                    <span class="bs-stepper-subtitle">Chọn thành viên cho nhóm</span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+                        <div class="step" data-target="#submit">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle"><i class="bx bx-check fs-5"></i></span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title text-uppercase">Hoàn thành</span>
+                                    <span class="bs-stepper-subtitle">Hoàn thành tạo mới</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content p-1">
+                        <!-- Details -->
+                        <div id="details" class="content pt-3 pt-lg-0">
+                            <div class="mb-3">
+                                <strong>Tên nhóm</strong><span style="color:red"> *</span>
+                                <input type="text" class="form-control" id="nameCreate" name="name" required placeholder="Tên vai trò">
+                            </div>
+                            <div class="mb-3">
+                                <strong>Mô tả</strong>
+                                <textarea class="form-control" id="txtDescriptionCreate" rows="3" placeholder="Mô tả chi tiết..."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Lĩnh vực</strong><span style="color:red"> *</span>
+                                <div class="col-md-12">
+                                    <div id="slField"
+                                         name="native-select"
+                                         placeholder="Chọn lĩnh vực"
+                                         data-search="true"
+                                         data-silent-initial-value-set="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-between mt-4">
+                                <button class="btn btn-label-secondary btn-prev" disabled>
+                                    <i class="bx bx-left-arrow-alt bx-xs me-sm-1 me-0"></i>
+                                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                </button>
+                                <button class="btn btn-primary btn-next">
+                                    <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                    <i class="bx bx-right-arrow-alt bx-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Database -->
+                        <div id="database" class="content pt-3 pt-lg-0">
+                            <div class="col-md-12 col-xl-12 mb-4">
+                                <div class="input-group input-group-merge mb-3">
+                                    <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                                    <input type="text" class="form-control " id="txt_search_user_team" placeholder="Nhập tên người dùng" onchange="searchUserTeam()" />
+                                </div>
+                                <div class="table-responsive" id="list_user_option_create">
+                                    @{ Html.RenderAction("SearchUser", "Teams", new { Page = 1, limit = 5, search = "", targetId = "list_user_option_create" }); }
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-between mt-4">
+                                <button class="btn btn-label-secondary btn-prev">
+                                    <i class="bx bx-left-arrow-alt bx-xs me-sm-1 me-0"></i>
+                                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                </button>
+                                <button class="btn btn-primary btn-next">
+                                    <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                    <i class="bx bx-right-arrow-alt bx-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <!-- submit -->
+                        <div id="submit" class="content text-center pt-3 pt-lg-0">
+                            <h5 class="mb-2 mt-3">Tạo mới đội nhóm</h5>
+                            <p>Nhấn lưu để hoàn tất quy trình tạo mới đội nhóm.</p>
+                            <!-- image -->
+                            <img src="../../assets/img/illustrations/man-with-laptop-light.png"
+                                 alt="Create App img"
+                                 width="200"
+                                 class="img-fluid"
+                                 data-app-light-img="illustrations/man-with-laptop-light.png"
+                                 data-app-dark-img="illustrations/man-with-laptop-dark.png" />
+                            <div class="col-12 d-flex justify-content-between mt-4 pt-2">
+                                <button class="btn btn-label-secondary btn-prev">
+                                    <i class="bx bx-left-arrow-alt bx-xs me-sm-1 me-0"></i>
+                                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                </button>
+                                <button class="btn btn-success " onclick="saveCreateTeam();">
+                                    <span class="align-middle d-sm-inline-block d-none">Lưu</span>
+                                    <i class="bx bx-check bx-xs ms-sm-1 ms-0"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ App Wizard -->
+        </div>
+    </div>
+</div>
+<!--/ Create App Modal -->
+
+<!-- Update Team Modal -->
+<div class="modal fade" id="updateApp" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-simple modal-upgrade-plan">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body p-2">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center">
+                    <h3 class="mb-3">Cập nhật nhóm</h3>
+                </div>
+                <!-- App Wizard -->
+                <div id="wizard-update-app" class="bs-stepper vertical mt-2 shadow-none border-0">
+                    <div class="bs-stepper-header border-0 p-1">
+                        <div class="step" data-target="#details">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle"><i class="bx bx-file fs-5"></i></span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title text-uppercase">Thông tin</span>
+                                    <span class="bs-stepper-subtitle">Thông tin cơ bản</span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+                        <div class="step" data-target="#database">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle"><i class="bx bx-data fs-5"></i></span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title text-uppercase">Thành viên</span>
+                                    <span class="bs-stepper-subtitle">Chọn thành viên cho nhóm</span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="line"></div>
+                        <div class="step" data-target="#submit">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle"><i class="bx bx-check fs-5"></i></span>
+                                <span class="bs-stepper-label">
+                                    <span class="bs-stepper-title text-uppercase">Hoàn thành</span>
+                                    <span class="bs-stepper-subtitle">Hoàn thành tạo mới</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content p-1">
+                        <div>
+                            <!-- Details -->
+                            <div id="details" class="content pt-3 pt-lg-0">
+                                <div class="mb-3">
+                                    <input type="hidden" id="teamID" />
+                                    <strong>Tên nhóm</strong><span style="color:red"> *</span>
+                                    <input type="text" class="form-control" id="nameUpdate" name="name" required placeholder="Tên vai trò">
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Mô tả</strong>
+                                    <textarea class="form-control" id="txtDescriptionEdit" rows="3" placeholder="Mô tả chi tiết..."></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Lĩnh vực</strong><span style="color:red"> *</span>
+                                    <div class="col-md-12">
+                                        <div id="slFieldUpdate"
+                                             name="native-select"
+                                             placeholder="Chọn lĩnh vực"
+                                             data-search="true"
+                                             data-silent-initial-value-set="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-between mt-4">
+                                    <button class="btn btn-label-secondary btn-prev" disabled>
+                                        <i class="bx bx-left-arrow-alt bx-xs me-sm-1 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next">
+                                        <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                        <i class="bx bx-right-arrow-alt bx-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Database -->
+                            <div id="database" class="content pt-3 pt-lg-0">
+                                <div class="col-md-12 col-xl-12 mb-4">
+                                    <div class="input-group input-group-merge mb-3">
+                                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                                        <input type="text" class="form-control " id="txt_search_user_team_update" placeholder="Nhập tên người dùng" onchange="searchUserTeamUpdate()" />
+                                    </div>
+                                    <div class="table-responsive" id="list_user_option_update">
+                                        @{ Html.RenderAction("SearchUser", "Teams", new { Page = 1, limit = 5, search = "", targetId = "list_user_option_update" }); }
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-between mt-4">
+                                    <button class="btn btn-label-secondary btn-prev">
+                                        <i class="bx bx-left-arrow-alt bx-xs me-sm-1 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next">
+                                        <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                        <i class="bx bx-right-arrow-alt bx-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- submit -->
+                            <div id="submit" class="content text-center pt-3 pt-lg-0">
+                                <h5 class="mb-2 mt-3">Cập nhật đội nhóm</h5>
+                                <p>Nhấn lưu để hoàn tất quy trình cập nhật đội nhóm.</p>
+                                <!-- image -->
+                                <img src="../../assets/img/illustrations/man-with-laptop-light.png"
+                                     alt="Create App img"
+                                     width="200"
+                                     class="img-fluid"
+                                     data-app-light-img="illustrations/man-with-laptop-light.png"
+                                     data-app-dark-img="illustrations/man-with-laptop-dark.png" />
+                                <div class="col-12 d-flex justify-content-between mt-4 pt-2">
+                                    <button class="btn btn-label-secondary btn-prev">
+                                        <i class="bx bx-left-arrow-alt bx-xs me-sm-1 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-success " onclick="saveUpdateTeam();">
+                                        <span class="align-middle d-sm-inline-block d-none">Lưu</span>
+                                        <i class="bx bx-check bx-xs ms-sm-1 ms-0"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ App Wizard -->
+        </div>
+    </div>
+</div>
+<!--/ Create App Modal -->
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/ScriptModel/team-script.js"></script>
+@Scripts.Render("~/Content/multiselect-dropdown/virtual-select.min.js")
+<script>
+    var optionFields = JSON.parse('@Html.Raw(Json.Encode(ViewBag.TechStack))').map(function (item) {
+        return {
+            label: item.Name,
+            value: item.Type
+        }
+    });
+    VirtualSelect.init({
+        ele: '#slField',
+        multiple: true,
+        allOptionsSelectedText: 'All',
+        showValueAsTags: true,
+        autoSelectFirstOption: false,
+        noOfDisplayValues: 5,
+        markSearchResults: true,
+        searchGroup: true,
+        searchNormalize: true,
+        options: optionFields,
+    });
+
+    VirtualSelect.init({
+        ele: '#slFieldUpdate',
+        multiple: true,
+        allOptionsSelectedText: 'All',
+        showValueAsTags: true,
+        autoSelectFirstOption: false,
+        noOfDisplayValues: 5,
+        markSearchResults: true,
+        searchGroup: true,
+        searchNormalize: true,
+        options: optionFields,
+    });
+</script>
+
+@*<script>
+    var selectedUserItems = [];
+    function logSelectedItems(checkbox) {
+        var userId = parseInt(checkbox.value);
+
+        if (checkbox.checked) {
+            if (!selectedUserItems.includes(userId)) {
+                selectedUserItems.push(userId);
+            }
+        } else {
+            selectedUserItems = selectedUserItems.filter(item => item !== userId);
+        }
+
+        console.log("Selected User Items:", selectedUserItems);
+    }
+
+
+</script>*@

@@ -1,0 +1,581 @@
+﻿@{
+    Layout = "~/Views/Shared/_SneatProLayout.cshtml";
+    ViewData["title"] = "Update User";
+}
+@using Sneat.MVC.Models.DTO.User;
+@using Sneat.MVC.Common
+@using Sneat.MVC.Models.Enum
+@model UpdateUserInputModel
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4"><span style="cursor: pointer;" onclick="window.location='/Users/Index'" class="text-muted fw-light">Quản lý tài khoản / Tài khoản / </span>Cập nhật </h4>
+
+        @if (ss.PermissionTabs.Contains("updateInfoUserTab"))
+        {
+            <div class="p-3 mt-1 card mb-4">
+                <h5 class="card-header">Thông tin tài khoản</h5>
+                <div class="row mt-2">
+                    <div class="col-sm-6">
+
+                        <div class="mb-3">
+                            <strong>Ảnh đại diện</strong>
+
+                            <div class="col-md-8" id="divAddImg">
+                                <div action="/Home/UploadFiles" class="dropzone needsclick" id="dropzone-basic">
+                                    <div class="dz-message needsclick">
+                                        Drop files here or click to upload
+                                        <span class="note needsclick">
+                                            Hãy tải ảnh Avatar người dùng tại đây (chỉ được tải duy nhất một ảnh)
+                                        </span>
+                                    </div>
+                                    <div class="fallback">
+                                        <input name="file" type="file" id="fileInput" />
+                                    </div>
+                                    <input type="hidden" id="currentImage" value="@Model.Avatar">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <div class="mb-3">
+                            <strong>Tên tài khoản</strong><span style="color:red"> *</span>
+                            <input type="text" value="@Model.Name" class="form-control" id="nameCreate" name="name" required placeholder="Tên tài khoản">
+                        </div>
+
+                        <div class="mb-3">
+                            <strong>Email</strong><span style="color:red"> *</span>
+                            <input type="text" value="@Model.Email" class="form-control" id="emailCreate" name="email" required placeholder="Nhập email">
+                        </div>
+
+                        <div class="mb-3">
+                            <strong>Số điện thoại</strong><span style="color:red"> *</span>
+                            <input type="number" value="@Model.Phone" class="form-control" id="input-add-phone" name="phone" required placeholder="Nhập số điện thoại">
+                        </div>
+
+                        <div class="mb-3">
+                            <strong>Phân quyền</strong><span style="color:red"> *</span>
+                            <div class="col-md-12">
+                                <div id="slRole"
+                                     name="native-select"
+                                     placeholder="Chọn vai trò"
+                                     data-search="true"
+                                     data-silent-initial-value-set="true">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mb-4">
+                <div class="bs-stepper wizard-numbered mt-2">
+                    <div class="bs-stepper-header">
+                        <div class="step" data-target="#account-details">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label mt-1">
+                                    <span class="bs-stepper-title">Chi tiết tài khoản</span>
+                                    <span class="bs-stepper-subtitle">Thông tin chi tiết cá nhân</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="line">
+                            <i class="bx bx-chevron-right"></i>
+                        </div>
+                        <div class="step" data-target="#personal-info">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label mt-1">
+                                    <span class="bs-stepper-title">CCCD/CMT</span>
+                                    <span class="bs-stepper-subtitle">Căn cước công dân/Chứng minh thư</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="line">
+                            <i class="bx bx-chevron-right"></i>
+                        </div>
+                        <div class="step" data-target="#social-links">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label mt-1">
+                                    <span class="bs-stepper-title">Tài khoản giao dịch</span>
+                                    <span class="bs-stepper-subtitle">Thông tin tài khoản ngân hàng</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div autocomplete="off">
+                            <!-- Account Details -->
+                            <div id="account-details" class="content">
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <label class="form-label">Tên họ</label>
+                                        <input type="text" value="@Model.FirstName" id="txtFirstName" class="form-control" placeholder="Nhâp tên họ" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label">Tên đệm</label>
+                                        <input type="text" value="@Model.LastName" id="txtLastName" class="form-control" placeholder="Nhâp tên đệm" />
+                                    </div>
+                                    <div class="col-md-6 col-12 mb-4">
+                                        <label for="flatpickr-date" class="form-label">Ngày sinh</label>
+                                        <input type="text" class="form-control" value="@Model.DOBStr" placeholder="YYYY-MM-DD" id="flatpickr-date" />
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <label for="slGender" class="form-label">Giới tính</label>
+                                        <select id="slGender" class="selectpicker w-100" data-style="btn-default">
+                                            <option value="@Gender.Male" @(Model.Gender == Gender.Male ? "selected" : "")>Nam</option>
+                                            <option value="@Gender.Female" @(Model.Gender == Gender.Female ? "selected" : "")>Nữ</option>
+                                            <option value="@Gender.Other" @(Model.Gender == Gender.Other ? "selected" : "")>Khác</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <button class="btn btn-label-secondary btn-prev" disabled>
+                                            <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </button>
+                                        <button class="btn btn-primary btn-next">
+                                            <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                            <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Personal Info -->
+                            <div id="personal-info" class="content">
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <label class="form-label">Mã CCCD/CMT</label>
+                                        <input type="text" value="@Model.Identity" id="txtIdentity" class="form-control" placeholder="Nhập CCCD/CMT" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="flatpickr-date-identity" class="form-label">Ngày cấp</label>
+                                        <input type="text" class="form-control" value="@Model.IdentityReceivedDateStr" placeholder="YYYY-MM-DD" id="flatpickr-date-identity" />
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label for="flatpickr-date-identity" class="form-label">Nơi cấp</label>
+                                        <textarea class="form-control" id="txtReceivePlace" rows="2">@Model.IdentityReceivedPlace</textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <h5 class="card-header">Ảnh CCCD/CMT</h5>
+                                            <div class="card-body">
+                                                <div action="/Home/UploadFiles" class="dropzone needsclick" id="dropzone-multi">
+                                                    <div class="dz-message needsclick">
+                                                        Drop files here or click to upload
+                                                        <span class="note needsclick">
+                                                            Hãy tải ảnh CCCD/CMT người dùng tại đây
+                                                        </span>
+                                                    </div>
+                                                    <div class="fallback">
+                                                        <input name="file" type="file" />
+                                                    </div>
+                                                    <input type="hidden" id="currentMultilImage" value="@Model.IdentityImages">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <button class="btn btn-primary btn-prev">
+                                            <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </button>
+                                        <button class="btn btn-primary btn-next">
+                                            <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                            <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Social Links -->
+                            <div id="social-links" class="content">
+                                <div class="row g-3">
+                                    <div class="col-ms-12 col-md-12 col-lg-12 col-xl-12">
+                                        <div class="row mt-3">
+                                            <div class="col-md-12" style="text-align: right">
+                                                <button type="button" class="btn btn-outline-primary" onclick="checkBankAccount()">
+                                                    Kiểm tra tài khoản
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-ms-9 col-md-9 col-lg-9 col-xl-9">
+                                        <div id="formContact">
+                                            <div class="row mt-3">
+                                                <div class="col-md-4">
+                                                    <label class="text-dark">
+                                                        Ngân hàng:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div id="slBank"
+                                                         name="native-select"
+                                                         placeholder="Chọn ngân hàng"
+                                                         data-search="true"
+                                                         data-silent-initial-value-set="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-4">
+                                                    <label class="text-dark">
+                                                        Số tài khoản:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="hidden" name="AccountNo" />
+                                                    <input name="AccountNoValue" value="@Model.BankAccountNo" id="valAccountNo" class="form-control " type="text" />
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-3">
+                                                <div class="col-md-4">
+                                                    <label class="text-dark">
+                                                        Tên tài khoản:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="hidden" name="AccountName" />
+                                                    <input name="AccountNameValue" value="@Model.BankAccountName" id="valAccountName" class="form-control " type="text" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-ms-3 col-md-3 col-lg-3 col-xl-3">
+                                        <div class="col-md-12 mt-3" style="text-align: center">
+                                            <img id="imgVietQR" src="@Model.BankQRImage" style="max-height: 300px; max-width: 300px;" class="w-px-90 " />
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <button class="btn btn-primary btn-prev">
+                                            <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </button>
+                                        <button class="btn btn-label-secondary btn-next" disabled>
+                                            <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                            <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mb-4">
+                <div class="bs-stepper wizard-numbered-address mt-2">
+                    <div class="bs-stepper-header">
+                        <div class="step" data-target="#home-address">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle"><i class='bx bx-home'></i></span>
+                                <span class="bs-stepper-label mt-1">
+                                    <span class="bs-stepper-title">Địa chỉ nhà</span>
+                                    <span class="bs-stepper-subtitle">Địa chỉ thường trú</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="line">
+                            <i class="bx bx-chevron-right"></i>
+                        </div>
+                        <div class="step" data-target="#office-address">
+                            <button type="button" class="step-trigger">
+                                <span class="bs-stepper-circle"><i class='bx bxs-buildings'></i></span>
+                                <span class="bs-stepper-label mt-1">
+                                    <span class="bs-stepper-title">Địa chỉ văn phòng</span>
+                                    <span class="bs-stepper-subtitle">Thông tin địa chỉ công ty</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div autocomplete="off">
+                            <div id="home-address" class="content">
+                                <div class="row g-3">
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <label class="text-dark">
+                                                Quận/huyện:
+                                            </label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div id="slProvinceHome"
+                                                 name="native-select"
+                                                 placeholder="Chọn quận/huyện"
+                                                 data-search="true"
+                                                 data-silent-initial-value-set="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <label class="text-dark">
+                                                Địa chỉ chi tiết:
+                                            </label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" id="txtHomeAddress" rows="2">@Model.HomeAddress</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <button class="btn btn-label-secondary btn-prev" disabled>
+                                            <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </button>
+                                        <button class="btn btn-primary btn-next">
+                                            <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                            <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="office-address" class="content">
+                                <div class="row g-3">
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <label class="text-dark">
+                                                Quận/huyện:
+                                            </label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div id="slProvinceOffice"
+                                                 name="native-select"
+                                                 placeholder="Chọn quận/huyện"
+                                                 data-search="true"
+                                                 data-silent-initial-value-set="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <label class="text-dark">
+                                                Địa chỉ chi tiết:
+                                            </label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" id="txtOfficeAddress" rows="2">@Model.OfficeAddress</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <button class="btn btn-primary btn-prev">
+                                            <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                        </button>
+                                        <button class="btn btn-label-secondary btn-next" disabled>
+                                            <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                            <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        @if (ss.PermissionTabs.Contains("updateStatusUserTab"))
+        {
+            if (Model.Status == SystemParam.ACTIVE)
+            {
+                <div class="p-3 mt-1 card mb-4">
+                    <h5 class="card-header">Ngừng hoạt động tài khoản</h5>
+                    <div class="card-body">
+                        <div class="mb-3 col-12 mb-0">
+                            <div class="alert alert-warning">
+                                <h6 class="alert-heading fw-medium mb-1">Bạn có chắc muốn ngừng hoạt động tài khoản này?</h6>
+                                <p class="mb-0">Khi tài khoản bị ngừng hoạt động, tài khoản sẽ không được quyền đăng nhập hệ thống nữa.</p>
+                            </div>
+                        </div>
+                        <div id="formAccountDeactivation">
+                            <div class="form-check mb-1" id="checkboxContainer">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       name="accountActivation"
+                                       id="accountActivation" />
+                                <label class="form-check-label" for="accountActivation">Tôi xác nhận ngừng hoạt động tài khoản này</label>
+                            </div>
+                            <div id="warningMessage" style="display: none; color: red; font-size: 15px;">Vui lòng xác nhận trước khi ngừng hoạt động tài khoản.</div>
+                            <button class="btn btn-danger deactivate-account " onclick="deactivateAccount(@Model.ID)">Ngừng hoạt động</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="p-3 mt-1 card mb-4">
+                    <h5 class="card-header">Kích hoạt tài khoản</h5>
+                    <div class="card-body">
+                        <div class="mb-3 col-12 mb-0">
+                            <div class="alert alert-success">
+                                <h6 class="alert-heading fw-medium mb-1">Kích hoạt tài khoản</h6>
+                                <p class="mb-0">Sau khi kích hoạt, tài khoản này có thể đăng nhập và hoạt động bình thường.</p>
+                            </div>
+                        </div>
+                        <div id="formAccountActivate">
+                            <button class="btn btn-success activate-account " onclick="activateAccount(@Model.ID)">Kích hoạt</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+
+
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="mt-1 mb-1 pull-right pr-10 pb-10">
+                    <button style="float: right;" class="btn btn-primary" id="btnAdd" onclick="saveUpdateUser(@Model.ID)"> <i class='menu-icon tf-icons bx bx-plus'></i> Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ScriptModel/user-script.js"></script>
+@Scripts.Render("~/Content/multiselect-dropdown/virtual-select.min.js")
+<script>
+    document.getElementById('accountActivation').addEventListener('change', function () {
+        const checkbox = this;
+        const checkboxLabel = document.querySelector('label[for="accountActivation"]');
+        const warningMessage = document.getElementById('warningMessage');
+
+        if (checkbox.checked) {
+            // Reset the styles to normal
+            checkbox.style.outline = '';
+            checkboxLabel.style.color = '';
+            warningMessage.style.display = 'none';
+        }
+    });
+
+</script>
+
+<script>
+    //Set config for multiple select
+    var optionBanks = JSON.parse('@Html.Raw(Json.Encode(ViewBag.ListBank))').map(function (item) {
+      return {
+          label: `<img src="${item.Logo}" class="ml-2" style=" width="55" height="25">` + `${item.ShortName} - ` + item.Name,
+          value: item.Bin
+      }
+  });
+    VirtualSelect.init({
+        ele: '#slBank',
+        multiple: false,
+        allOptionsSelectedText: 'All',
+        showValueAsTags: true,
+        autoSelectFirstOption: false,
+        noOfDisplayValues: 5,
+        markSearchResults: true,
+        searchGroup: true,
+        searchNormalize: true,
+        options: optionBanks,
+        selectedValue: '@Model.BankBin'
+    });
+
+     var optionsTree = JSON.parse('@Html.Raw(Json.Encode(ViewBag.ListProvince))');
+     const optionsTreeRender = optionsTree.map(child => {
+         return {
+             value: child.ID,
+             label: child.Name,
+             options: child.Districts.length ? child.Districts.map(grandChild => ({
+                 label: grandChild.Name,
+                 value: grandChild.ID.toString()
+             })) : null
+         };
+     });
+    VirtualSelect.init({
+        ele: '#slProvinceHome',
+        multiple: false,
+        allOptionsSelectedText: 'All',
+        showValueAsTags: false,
+        autoSelectFirstOption: false,
+        noOfDisplayValues: 5,
+        markSearchResults: true,
+        searchGroup: true,
+        searchNormalize: true,
+        options: optionsTreeRender,
+        selectedValue: '@Model.DistrictHomeID'
+    });
+
+    VirtualSelect.init({
+        ele: '#slProvinceOffice',
+        multiple: false,
+        allOptionsSelectedText: 'All',
+        showValueAsTags: false,
+        autoSelectFirstOption: false,
+        noOfDisplayValues: 5,
+        markSearchResults: true,
+        searchGroup: true,
+        searchNormalize: true,
+        options: optionsTreeRender,
+        selectedValue: '@Model.DistrictOfficeID'
+    });
+
+   /* var optionBanks = [];
+    fetch('https://api.vietqr.io/v2/banks')
+        .then(response => response.json())
+        .then(data => {
+             optionBanks = data.data.map(function (item) {
+                return {
+                    value: item.bin,
+                    label: `<img src="${item.logo}" class="ml-2" style=" width="55" height="25">` + `${item.shortName} - ` + item.name ,
+                };
+            });
+
+            VirtualSelect.init({
+                ele: '#slBank',
+                multiple: false,
+                allOptionsSelectedText: 'All',
+                markSearchResults: true,
+                hasOptionDescription: true,
+                searchPlaceholderText: "Nhập tên ngân hàng",
+                options: optionBanks,
+                searchNormalize: true,
+                //selectedValue: "",
+            });
+
+            console.log(optionBanks);
+        })
+        .catch(error => {
+            console.error('Error fetching the bank data:', error);
+        });*/
+
+    var optionRoles = JSON.parse('@Html.Raw(Json.Encode(ViewBag.ListRole))').map(function (item) {
+         return {
+             label: item.Name,
+             value: item.ID
+         }
+    });
+    var preSelectedRoleValue = JSON.parse('@Html.Raw(Json.Encode(Model.RoleIds))');
+    VirtualSelect.init({
+        ele: '#slRole',
+        multiple: true,
+        allOptionsSelectedText: 'All',
+        showValueAsTags: true,
+        autoSelectFirstOption: false,
+        noOfDisplayValues: 5,
+        markSearchResults: true,
+        searchGroup: true,
+        searchNormalize: true,
+        options: optionRoles,
+        selectedValue: preSelectedRoleValue
+    });
+
+</script>

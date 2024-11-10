@@ -1,0 +1,300 @@
+﻿@using Sneat.MVC.Models.DTO.User
+@using Sneat.MVC.Models.Enum
+@using Sneat.MVC.Common
+@using Sneat.MVC.Models.DTO.WorkPackage;
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WorkPackageOutputModel>
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+
+<table class=" dt-complex-header text-nowrap table table-bordered table-striped text-center" id="dataTable" cellspacing="0">
+  
+    <thead>
+        <tr>
+            <th rowspan="2">Tiêu đề</th>
+            <th rowspan="2">Loại task</th>
+            <th rowspan="2">Người nhận nhiệm vụ</th>
+            <th rowspan="2">Trạng thái</th>
+            <th rowspan="2">Độ ưu tiên</th>
+            <th colspan="3">Thời gian hoàn thành</th>
+            <th colspan="3">Thời gian nhiệm vụ</th>
+            <th rowspan="2">Tác vụ</th>
+        </tr>
+        <tr>
+            <th>Dự kiến (h)</th>
+            <th>Thực tế (h)</th>
+            <th>Còn lại (h)</th>
+            <th>Ngày tạo</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            if (Model.Count() <= 0)
+            {
+                <tr>
+                    <td colspan="12">Không có dữ liệu.</td>
+                </tr>
+            }
+            else
+            {
+
+                int stt = ((Model.PageNumber - 1) * Model.PageSize) + 1;
+                foreach (var data in Model)
+                {
+
+                    <tr>
+                        <td>@data.Subject</td>
+                        <td>
+                            <span class="badge bg-label-hover-vimeo me-1">@data.TypeStr</span>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <div class="avatar me-2">
+                                    <img src="@data.AssigneeAvatar" alt="Avatar" class="rounded-circle" />
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <h6 class="mb-0 text-truncate">@data.AssigneeName</h6>
+                                    <small class="text-truncate text-muted">@data.AssigneeEmail</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            @{
+                                var labelType = "";
+                                switch (data.Status)
+                                {
+                                    case (int)WorkPackageStatus.New:
+                                        labelType = "bg-label-hover-primary";
+                                        break;
+                                    case (int)WorkPackageStatus.InProgress:
+                                        labelType = "bg-label-hover-warning";
+                                        break;
+                                    case (int)WorkPackageStatus.InTesting:
+                                        labelType = "bg-label-hover-info";
+                                        break;
+                                    case (int)WorkPackageStatus.Closed:
+                                        labelType = "bg-label-hover-secondary";
+                                        break;
+                                    case (int)WorkPackageStatus.Developed:
+                                        labelType = "bg-label-hover-success";
+                                        break;
+                                    case (int)WorkPackageStatus.Tested:
+                                        labelType = "bg-label-hover-success";
+                                        break;
+                                    case (int)WorkPackageStatus.Rejected:
+                                        labelType = "bg-label-hover-google-plus";
+                                        break;
+                                    case (int)WorkPackageStatus.TestFailed:
+                                        labelType = "bg-label-hover-danger";
+                                        break;
+                                    default:
+                                        labelType = "bg-label-hover-vimeo";
+                                        break;
+                                }
+
+                                <span class="badge @labelType me-1">@data.StatusStr</span>
+                            }
+
+                        </td>
+                        <td>
+                        @{
+                            var labelPriorityType = "";
+                            switch (data.PriorityPoint)
+                            {
+                                case SystemParam.PRIORITY_TYPE_HOT_FIX:
+                                    labelPriorityType = "bg-label-hover-danger";
+                                    break;
+                                case SystemParam.PRIORITY_TYPE_IMMEDIATE:
+                                    labelPriorityType = "bg-label-hover-google-plus";
+                                    break;
+                                case SystemParam.PRIORITY_TYPE_HIGH:
+                                    labelPriorityType = "bg-label-hover-warning";
+                                    break;
+                                case SystemParam.PRIORITY_TYPE_NORMAL:
+                                    labelPriorityType = "bg-label-hover-primary";
+                                    break;
+                                case SystemParam.PRIORITY_TYPE_LOW:
+                                    labelPriorityType = "bg-label-hover-secondary";
+                                    break;
+                                default:
+                                    labelPriorityType = "bg-label-hover-vimeo";
+                                    break;
+                            }
+
+                            <span class="badge @labelPriorityType me-1">@data.PriorityPointStr</span>
+                        }
+
+                    </td>
+                        <td>@data.EstimateTime</td>
+                        <td>@data.SpentTime</td>
+                        <td>@data.RemainingTime</td>
+                        <td>@data.CreateDate.ToString("dd/MM/yyyy")</td>
+                        <td>@(data.StartDate.HasValue ? data.StartDate.Value.ToString("dd/MM/yyyy") : "---")</td>
+                        <td>@(data.FinishDate.HasValue ? data.FinishDate.Value.ToString("dd/MM/yyyy") : "---")</td>
+                        <td>
+                            <div class="dropdown">
+                                <button type="button"
+                                        class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                  
+                                    <a class="dropdown-item" onclick="updateTaskModal(@data.ID)"><i class="bx bx-edit-alt me-1"></i> Cập nhật task</a>
+                                   
+                                    <a class="dropdown-item" onclick="deleteProject(@data.ID)"><i class="bx bx-trash me-1"></i> Xóa dự án</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                                    stt++;
+
+                                }
+                            }
+        }
+
+    </tbody>
+</table>
+<div class="col-md-12">
+    <div class="row float-right">
+        @*phân trang*@
+        @Html.PagedListPager(Model, Page => Url.Action("SearchWorkPackage", new { Page, search = "" }),
+PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions()
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "list_work_package_project"
+})
+)
+    </div>
+</div>
+
+
+<div class="offcanvas offcanvas-end"
+     tabindex="-1"
+     data-bs-scroll="true"
+     id="offcanvasUpdateTask"
+     aria-labelledby="offcanvasAddUserLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Nhiệm vụ mới</h5>
+        <button type="button"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body mx-0 flex-grow-0">
+        <div class="add-new-user pt-0" id="addNewUserForm">
+            <input type="hidden" id="task-id" />
+            <input type="hidden" id="project-id" />
+            <div class="mb-3">
+                <label class="form-label" for="add-user-fullname">Tiêu đề</label>
+                <input type="text"
+                       class="form-control"
+                       id="edit-task-subject"
+                       placeholder="Nhập tiêu đề ..."
+                       name="userFullname"
+                       aria-label="John Doe" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="add-user-email">Mô tả</label>
+                <div class="form-control p-0 pt-1">
+                    <div class="comment-toolbar-edit border-0 border-bottom">
+                        <div class="d-flex justify-content-start">
+                            <span class="ql-formats me-0">
+                                <button class="ql-bold"></button>
+                                <button class="ql-italic"></button>
+                                <button class="ql-underline"></button>
+                                <button class="ql-list" value="ordered"></button>
+                                <button class="ql-list" value="bullet"></button>
+                                <button class="ql-link"></button>
+                                <button class="ql-image"></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="comment-editor-edit border-0 pb-4" id="edit-task-description"></div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="country">Thành viên bàn giao</label>
+                <select id="edit-assignee" class="select2 form-select">
+                    <option value="">-- Chọn thành viên --</option>
+                    @foreach (var mem in ViewBag.ListUserProject)
+                    {
+                        <option value="@mem.ID">@mem.UserName</option>
+                    }
+
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="country">Trạng thái</label>
+                <select id="edit-status" class="select2 form-select">
+                    <option value="">-- Chọn độ ưu tiên --</option>
+                    <option value="1">@SystemParam.TASK_STATUS_NEW</option>
+                    <option value="2">@SystemParam.TASK_STATUS_INPROGRESS</option>
+                    <option value="3">@SystemParam.TASK_STATUS_IN_TESTING</option>
+                    <option value="4">@SystemParam.TASK_STATUS_CLOSED</option>
+                    <option value="7">@SystemParam.TASK_STATUS_DEVELOPED</option>
+                    <option value="8">@SystemParam.TASK_STATUS_TESTED</option>
+                    <option value="10">@SystemParam.TASK_STATUS_REJECTED</option>
+                    <option value="11">@SystemParam.TASK_STATUS_TEST_FAILED</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="add-user-contact">Thời gian dự kiến (h)</label>
+                <input type="number"
+                       id="edit-est-time"
+                       class="form-control phone-mask"
+                       placeholder="Nhập thời gian dự kiến..."
+                       aria-label="john.doe@example.com"
+                       name="userContact" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="add-user-contact">Thời gian thực tế (h)</label>
+                <input type="number"
+                       id="edit-real-time"
+                       class="form-control phone-mask"
+                       placeholder="Nhập thời gian thực tế..."
+                       aria-label="john.doe@example.com"
+                       name="userContact" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="add-user-contact">Thời gian còn lại (h)</label>
+                <input type="number"
+                       id="edit-left-time"
+                       class="form-control phone-mask"
+                       placeholder="Nhập thời gian còn lại..."
+                       aria-label="john.doe@example.com"
+                       name="userContact" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="country">Độ ưu tiên</label>
+                <select id="edit-priority-point" class="select2 form-select">
+                    <option value="">-- Chọn độ ưu tiên --</option>
+                    <option value="@SystemParam.PRIORITY_TYPE_HOT_FIX">@SystemParam.PRIORITY_TYPE_HOT_FIX_STR</option>
+                    <option value="@SystemParam.PRIORITY_TYPE_IMMEDIATE">@SystemParam.PRIORITY_TYPE_IMMEDIATE_STR</option>
+                    <option value="@SystemParam.PRIORITY_TYPE_HIGH">@SystemParam.PRIORITY_TYPE_HIGH_STR</option>
+                    <option value="@SystemParam.PRIORITY_TYPE_NORMAL">@SystemParam.PRIORITY_TYPE_NORMAL_STR</option>
+                    <option value="@SystemParam.PRIORITY_TYPE_LOW">@SystemParam.PRIORITY_TYPE_LOW_STR</option>
+
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="edit-start-date">Ngày bắt đầu</label>
+                <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="flatpickr-start-date-edit" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="edit-end-date">Ngày kết thúc</label>
+                <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="flatpickr-end-date-edit" />
+            </div>
+            <button type="submit" class="btn btn-primary me-sm-3 me-1 " onclick="saveUpdateWorkPackage()">Lưu</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Đóng</button>
+        </div>
+    </div>
+</div>

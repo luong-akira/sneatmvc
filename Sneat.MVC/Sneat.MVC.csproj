@@ -1,0 +1,2366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3C4DDC4E-A807-498B-95E5-183337AEDDD1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sneat.MVC</RootNamespace>
+    <AssemblyName>Sneat.MVC</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44333</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Sneat.MVC.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=8.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.8.0.2\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=8.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.8.0.2\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=8.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.8.0.2\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=8.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.8.0.2\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=8.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.8.0.2\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.4\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.0.1\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.1\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AllowCrossSiteJsonAttribute.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="App_Start\UserAuthenticationFilter.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\Helper.cs" />
+    <Compile Include="Common\SystemParam.cs" />
+    <Compile Include="Common\Utils.cs" />
+    <Compile Include="Controllers\API\AddresssController.cs" />
+    <Compile Include="Controllers\API\AuthenticationController.cs" />
+    <Compile Include="Controllers\API\BankController.cs" />
+    <Compile Include="Controllers\API\BaseAPIController.cs" />
+    <Compile Include="Controllers\API\DocumentController.cs" />
+    <Compile Include="Controllers\API\HomeController.cs" />
+    <Compile Include="Controllers\API\ProjectController.cs" />
+    <Compile Include="Controllers\API\RoleController.cs" />
+    <Compile Include="Controllers\API\SprintController.cs" />
+    <Compile Include="Controllers\API\SystemController.cs" />
+    <Compile Include="Controllers\API\TaskController.cs" />
+    <Compile Include="Controllers\API\TeamsController.cs" />
+    <Compile Include="Controllers\API\TimeLogController.cs" />
+    <Compile Include="Controllers\API\UploadController.cs" />
+    <Compile Include="Controllers\API\UsersController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WorkPackageController.cs" />
+    <Compile Include="DAL\SneatContext.cs" />
+    <Compile Include="DAL\VirtualSeed.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407121600173_first_init.cs" />
+    <Compile Include="Migrations\202407121600173_first_init.designer.cs">
+      <DependentUpon>202407121600173_first_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407140841060_add-user-avatar.cs" />
+    <Compile Include="Migrations\202407140841060_add-user-avatar.designer.cs">
+      <DependentUpon>202407140841060_add-user-avatar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407221647474_user-detail table.cs" />
+    <Compile Include="Migrations\202407221647474_user-detail table.designer.cs">
+      <DependentUpon>202407221647474_user-detail table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407230930465_update_database.cs" />
+    <Compile Include="Migrations\202407230930465_update_database.Designer.cs">
+      <DependentUpon>202407230930465_update_database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407231455119_update_user_detail.cs" />
+    <Compile Include="Migrations\202407231455119_update_user_detail.designer.cs">
+      <DependentUpon>202407231455119_update_user_detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407240216169_user-detail-identity.cs" />
+    <Compile Include="Migrations\202407240216169_user-detail-identity.Designer.cs">
+      <DependentUpon>202407240216169_user-detail-identity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407251020527_add-qr-url-user-detail.cs" />
+    <Compile Include="Migrations\202407251020527_add-qr-url-user-detail.Designer.cs">
+      <DependentUpon>202407251020527_add-qr-url-user-detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407260637289_update-dob-user-detail.cs" />
+    <Compile Include="Migrations\202407260637289_update-dob-user-detail.Designer.cs">
+      <DependentUpon>202407260637289_update-dob-user-detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407290201281_add-role-permission.cs" />
+    <Compile Include="Migrations\202407290201281_add-role-permission.Designer.cs">
+      <DependentUpon>202407290201281_add-role-permission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407290208419_add-user-role table.cs" />
+    <Compile Include="Migrations\202407290208419_add-user-role table.Designer.cs">
+      <DependentUpon>202407290208419_add-user-role table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407290937016_update-permission-table.cs" />
+    <Compile Include="Migrations\202407290937016_update-permission-table.Designer.cs">
+      <DependentUpon>202407290937016_update-permission-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407310714596_add-permission-icon.cs" />
+    <Compile Include="Migrations\202407310714596_add-permission-icon.Designer.cs">
+      <DependentUpon>202407310714596_add-permission-icon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408031536239_add_team_table.cs" />
+    <Compile Include="Migrations\202408031536239_add_team_table.designer.cs">
+      <DependentUpon>202408031536239_add_team_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408060137433_add-relationship-user-team.cs" />
+    <Compile Include="Migrations\202408060137433_add-relationship-user-team.Designer.cs">
+      <DependentUpon>202408060137433_add-relationship-user-team.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408071502375_add-table-project.cs" />
+    <Compile Include="Migrations\202408071502375_add-table-project.designer.cs">
+      <DependentUpon>202408071502375_add-table-project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408112223301_add-relaionship-project-user.cs" />
+    <Compile Include="Migrations\202408112223301_add-relaionship-project-user.designer.cs">
+      <DependentUpon>202408112223301_add-relaionship-project-user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408250252568_add-project-role.cs" />
+    <Compile Include="Migrations\202408250252568_add-project-role.Designer.cs">
+      <DependentUpon>202408250252568_add-project-role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408261504578_add-work-package-table.cs" />
+    <Compile Include="Migrations\202408261504578_add-work-package-table.Designer.cs">
+      <DependentUpon>202408261504578_add-work-package-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409020324153_add_user_workpackage.cs" />
+    <Compile Include="Migrations\202409020324153_add_user_workpackage.designer.cs">
+      <DependentUpon>202409020324153_add_user_workpackage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409030343593_fake-relationship-workpackage-project.cs" />
+    <Compile Include="Migrations\202409030343593_fake-relationship-workpackage-project.designer.cs">
+      <DependentUpon>202409030343593_fake-relationship-workpackage-project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409112240406_add_token_user.cs" />
+    <Compile Include="Migrations\202409112240406_add_token_user.designer.cs">
+      <DependentUpon>202409112240406_add_token_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409132049425_add-document-table.cs" />
+    <Compile Include="Migrations\202409132049425_add-document-table.designer.cs">
+      <DependentUpon>202409132049425_add-document-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409132104493_update-document-table.cs" />
+    <Compile Include="Migrations\202409132104493_update-document-table.designer.cs">
+      <DependentUpon>202409132104493_update-document-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409151429043_add-sprint-table.cs" />
+    <Compile Include="Migrations\202409151429043_add-sprint-table.designer.cs">
+      <DependentUpon>202409151429043_add-sprint-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409151536010_add-parentid-work-package.cs" />
+    <Compile Include="Migrations\202409151536010_add-parentid-work-package.designer.cs">
+      <DependentUpon>202409151536010_add-parentid-work-package.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409151536441_fix-parentid-work-package.cs" />
+    <Compile Include="Migrations\202409151536441_fix-parentid-work-package.designer.cs">
+      <DependentUpon>202409151536441_fix-parentid-work-package.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409151655412_add-relationship-sprint-task.cs" />
+    <Compile Include="Migrations\202409151655412_add-relationship-sprint-task.designer.cs">
+      <DependentUpon>202409151655412_add-relationship-sprint-task.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409160623051_add_sprint_fk.cs" />
+    <Compile Include="Migrations\202409160623051_add_sprint_fk.designer.cs">
+      <DependentUpon>202409160623051_add_sprint_fk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409161525422_add-timelog-table.cs" />
+    <Compile Include="Migrations\202409161525422_add-timelog-table.designer.cs">
+      <DependentUpon>202409161525422_add-timelog-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409161541025_time-log-task.cs" />
+    <Compile Include="Migrations\202409161541025_time-log-task.designer.cs">
+      <DependentUpon>202409161541025_time-log-task.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409161543051_time-log-task-relation.cs" />
+    <Compile Include="Migrations\202409161543051_time-log-task-relation.designer.cs">
+      <DependentUpon>202409161543051_time-log-task-relation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409191211293_parent-work-package.cs" />
+    <Compile Include="Migrations\202409191211293_parent-work-package.designer.cs">
+      <DependentUpon>202409191211293_parent-work-package.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409191217094_add-member-fk.cs" />
+    <Compile Include="Migrations\202409191217094_add-member-fk.designer.cs">
+      <DependentUpon>202409191217094_add-member-fk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409191250011_add-teamIds-field.cs" />
+    <Compile Include="Migrations\202409191250011_add-teamIds-field.designer.cs">
+      <DependentUpon>202409191250011_add-teamIds-field.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409191726592_set-hours-to-double.cs" />
+    <Compile Include="Migrations\202409191726592_set-hours-to-double.designer.cs">
+      <DependentUpon>202409191726592_set-hours-to-double.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\APIModel\Authentication\ChangePasswordModel.cs" />
+    <Compile Include="Models\APIModel\Authentication\WebLoginModel.cs" />
+    <Compile Include="Models\APIModel\JsonResponse.cs" />
+    <Compile Include="Models\APIModel\JsonResultModel.cs" />
+    <Compile Include="Models\APIModel\PagingModel.cs" />
+    <Compile Include="Models\Common\CommonTree.cs" />
+    <Compile Include="Models\Common\TreeItem.cs" />
+    <Compile Include="Models\DTO\Address\ProvinceModel.cs" />
+    <Compile Include="Models\DTO\Bank\BankVietQROutputModel.cs" />
+    <Compile Include="Models\DTO\Document\DocumentInputModel.cs" />
+    <Compile Include="Models\DTO\Home\ChartDataModel.cs" />
+    <Compile Include="Models\DTO\Permission\PermissionOutputModel.cs" />
+    <Compile Include="Models\DTO\Project\ProjectInputModel.cs" />
+    <Compile Include="Models\DTO\Role\RoleOutputModel.cs" />
+    <Compile Include="Models\DTO\Sprint\SprintInputModel.cs" />
+    <Compile Include="Models\DTO\Task\UpdateTaskStatusModel.cs" />
+    <Compile Include="Models\DTO\Task\UpdateUserStoryGeneralInfoModel.cs" />
+    <Compile Include="Models\DTO\Team\TeamOutputModel.cs" />
+    <Compile Include="Models\DTO\Team\TechStackModel.cs" />
+    <Compile Include="Models\DTO\TimeLog\TimeLogInputModel.cs" />
+    <Compile Include="Models\DTO\User\UserDetailOutputModel.cs" />
+    <Compile Include="Models\DTO\User\UserInputModel.cs" />
+    <Compile Include="Models\DTO\WorkPackage\WorkPackageInputModel.cs" />
+    <Compile Include="Models\Entity\Bank.cs" />
+    <Compile Include="Models\Entity\District.cs" />
+    <Compile Include="Models\Entity\Document.cs" />
+    <Compile Include="Models\Entity\Permission.cs" />
+    <Compile Include="Models\Entity\Project.cs" />
+    <Compile Include="Models\Entity\Province.cs" />
+    <Compile Include="Models\Entity\Role.cs" />
+    <Compile Include="Models\Entity\RolePermission.cs" />
+    <Compile Include="Models\Entity\Sprint.cs" />
+    <Compile Include="Models\Entity\Team.cs" />
+    <Compile Include="Models\Entity\TimeLog.cs" />
+    <Compile Include="Models\Entity\User.cs" />
+    <Compile Include="Models\Entity\UserDetail.cs" />
+    <Compile Include="Models\Entity\UserProject.cs" />
+    <Compile Include="Models\Entity\UserRole.cs" />
+    <Compile Include="Models\Entity\UserTeam.cs" />
+    <Compile Include="Models\Entity\UserWorkPackage.cs" />
+    <Compile Include="Models\Entity\Ward.cs" />
+    <Compile Include="Models\Entity\WorkPackage.cs" />
+    <Compile Include="Models\Enum\Gender.cs" />
+    <Compile Include="Models\Enum\ProjectRole.cs" />
+    <Compile Include="Models\Enum\Status.cs" />
+    <Compile Include="Models\Enum\TechStack.cs" />
+    <Compile Include="Models\Enum\WorkPackageType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AddressService.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\BankService.cs" />
+    <Compile Include="Services\DocumentService.cs" />
+    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\HomeService.cs" />
+    <Compile Include="Services\ProjectService.cs" />
+    <Compile Include="Services\ResponseService.cs" />
+    <Compile Include="Services\RoleService.cs" />
+    <Compile Include="Services\SprintService.cs" />
+    <Compile Include="Services\TaskService.cs" />
+    <Compile Include="Services\TeamService.cs" />
+    <Compile Include="Services\TimeLogService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\WorkPackageService.cs" />
+    <Compile Include="Templates\SendMailTemplate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="APIProject.xml" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\ckfinder\changelog.txt" />
+    <Content Include="Content\ckfinder\ckfinder-2.js" />
+    <Content Include="Content\ckfinder\ckfinder.html" />
+    <Content Include="Content\ckfinder\ckfinder.js" />
+    <Content Include="Content\ckfinder\ckfinder1.js" />
+    <Content Include="Content\ckfinder\ckfinder_v1.js" />
+    <Content Include="Content\ckfinder\config.ascx" />
+    <Content Include="Content\ckfinder\config.js" />
+    <Content Include="Content\ckfinder\core\connector\aspx\connector.aspx" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\bg.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\ca.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\cs.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\cy.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\da.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\de.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\el.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\en.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\eo.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\es-mx.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\es.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\et.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\fa.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\fi.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\fr.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\gu.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\he.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\hi.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\hr.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\hu.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\it.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\ja.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\lt.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\lv.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\nb.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\nl.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\nn.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\no.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\pl.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\pt-br.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\ro.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\ru.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\sk.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\sl.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\sr.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\sv.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\tr.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\vi.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\zh-cn.xml" />
+    <Content Include="Content\ckfinder\core\connector\aspx\lang\zh-tw.xml" />
+    <Content Include="Content\ckfinder\help\cs\files\001.html" />
+    <Content Include="Content\ckfinder\help\cs\files\002.html" />
+    <Content Include="Content\ckfinder\help\cs\files\003.html" />
+    <Content Include="Content\ckfinder\help\cs\files\004.html" />
+    <Content Include="Content\ckfinder\help\cs\files\005.html" />
+    <Content Include="Content\ckfinder\help\cs\files\006.html" />
+    <Content Include="Content\ckfinder\help\cs\files\007.html" />
+    <Content Include="Content\ckfinder\help\cs\files\008.html" />
+    <Content Include="Content\ckfinder\help\cs\files\009.html" />
+    <Content Include="Content\ckfinder\help\cs\files\010.html" />
+    <Content Include="Content\ckfinder\help\cs\files\011.html" />
+    <Content Include="Content\ckfinder\help\cs\files\012.html" />
+    <Content Include="Content\ckfinder\help\cs\files\013.html" />
+    <Content Include="Content\ckfinder\help\cs\files\014.html" />
+    <Content Include="Content\ckfinder\help\cs\files\015.html" />
+    <Content Include="Content\ckfinder\help\cs\files\header.html" />
+    <Content Include="Content\ckfinder\help\cs\files\license.html" />
+    <Content Include="Content\ckfinder\help\cs\files\suggestions.html" />
+    <Content Include="Content\ckfinder\help\cs\files\toc.html" />
+    <Content Include="Content\ckfinder\help\cs\index.html" />
+    <Content Include="Content\ckfinder\help\en\files\001.html" />
+    <Content Include="Content\ckfinder\help\en\files\002.html" />
+    <Content Include="Content\ckfinder\help\en\files\003.html" />
+    <Content Include="Content\ckfinder\help\en\files\004.html" />
+    <Content Include="Content\ckfinder\help\en\files\005.html" />
+    <Content Include="Content\ckfinder\help\en\files\006.html" />
+    <Content Include="Content\ckfinder\help\en\files\007.html" />
+    <Content Include="Content\ckfinder\help\en\files\008.html" />
+    <Content Include="Content\ckfinder\help\en\files\009.html" />
+    <Content Include="Content\ckfinder\help\en\files\010.html" />
+    <Content Include="Content\ckfinder\help\en\files\011.html" />
+    <Content Include="Content\ckfinder\help\en\files\012.html" />
+    <Content Include="Content\ckfinder\help\en\files\013.html" />
+    <Content Include="Content\ckfinder\help\en\files\014.html" />
+    <Content Include="Content\ckfinder\help\en\files\015.html" />
+    <Content Include="Content\ckfinder\help\en\files\header.html" />
+    <Content Include="Content\ckfinder\help\en\files\license.html" />
+    <Content Include="Content\ckfinder\help\en\files\suggestions.html" />
+    <Content Include="Content\ckfinder\help\en\files\toc.html" />
+    <Content Include="Content\ckfinder\help\en\index.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\001.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\002.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\003.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\004.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\005.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\006.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\007.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\008.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\009.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\010.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\011.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\012.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\013.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\header.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\001.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\002.gif" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\003.gif" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\004.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\005.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\006.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\007.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\008.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\009.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\010.gif" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\011.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\012.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\013.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\014.gif" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\015.gif" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\016.gif" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\017.gif" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\018.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\019.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\images\020.png" />
+    <Content Include="Content\ckfinder\help\es-mx\files\license.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\suggestions.html" />
+    <Content Include="Content\ckfinder\help\es-mx\files\toc.html" />
+    <Content Include="Content\ckfinder\help\es-mx\index.html" />
+    <Content Include="Content\ckfinder\help\es\files\001.html" />
+    <Content Include="Content\ckfinder\help\es\files\002.html" />
+    <Content Include="Content\ckfinder\help\es\files\003.html" />
+    <Content Include="Content\ckfinder\help\es\files\004.html" />
+    <Content Include="Content\ckfinder\help\es\files\005.html" />
+    <Content Include="Content\ckfinder\help\es\files\006.html" />
+    <Content Include="Content\ckfinder\help\es\files\007.html" />
+    <Content Include="Content\ckfinder\help\es\files\008.html" />
+    <Content Include="Content\ckfinder\help\es\files\009.html" />
+    <Content Include="Content\ckfinder\help\es\files\010.html" />
+    <Content Include="Content\ckfinder\help\es\files\011.html" />
+    <Content Include="Content\ckfinder\help\es\files\012.html" />
+    <Content Include="Content\ckfinder\help\es\files\013.html" />
+    <Content Include="Content\ckfinder\help\es\files\header.html" />
+    <Content Include="Content\ckfinder\help\es\files\images\001.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\002.gif" />
+    <Content Include="Content\ckfinder\help\es\files\images\003.gif" />
+    <Content Include="Content\ckfinder\help\es\files\images\004.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\005.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\006.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\007.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\008.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\009.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\010.gif" />
+    <Content Include="Content\ckfinder\help\es\files\images\011.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\012.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\013.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\014.gif" />
+    <Content Include="Content\ckfinder\help\es\files\images\015.gif" />
+    <Content Include="Content\ckfinder\help\es\files\images\016.gif" />
+    <Content Include="Content\ckfinder\help\es\files\images\017.gif" />
+    <Content Include="Content\ckfinder\help\es\files\images\018.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\019.png" />
+    <Content Include="Content\ckfinder\help\es\files\images\020.png" />
+    <Content Include="Content\ckfinder\help\es\files\license.html" />
+    <Content Include="Content\ckfinder\help\es\files\suggestions.html" />
+    <Content Include="Content\ckfinder\help\es\files\toc.html" />
+    <Content Include="Content\ckfinder\help\es\index.html" />
+    <Content Include="Content\ckfinder\help\files\images\002.gif" />
+    <Content Include="Content\ckfinder\help\files\images\003.gif" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_basket_clear.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_basket_drag.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_basket_empty.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_basket_file_menu.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_basket_remove.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_already_exists.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_copied.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_delete.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_display_01.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_display_02.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_display_03.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_display_04.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_drag_copy.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_drag_move.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_menu.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_moved.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_pane.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_rename.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_resize.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_resize_both.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_resize_new.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_resize_overwrite.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_resize_resized.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_resize_thumbnails.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_select_hovered.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_select_selected.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_select_unselected.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_view_list.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_file_view_thumbnails.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_collapse.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_copied_from_basket.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_delete.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_expand.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_loading.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_menu.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_moved_from_basket.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_new.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_pane.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_rename.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_folder_select.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_interface.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_menu_arrow.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_menu_arrows.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_resize_lock.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_resize_reset.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_resize_unlock.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_settings.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_status_empty.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_status_file.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_status_folder.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_toolbar.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_toolbar_help.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_toolbar_refresh.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_upload_01.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_upload_03.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_upload_04.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_upload_09.png" />
+    <Content Include="Content\ckfinder\help\files\images\CKFinder_upload_10.png" />
+    <Content Include="Content\ckfinder\help\files\other\help.css" />
+    <Content Include="Content\ckfinder\help\files\other\help.js" />
+    <Content Include="Content\ckfinder\help\fi\files\001.html" />
+    <Content Include="Content\ckfinder\help\fi\files\002.html" />
+    <Content Include="Content\ckfinder\help\fi\files\003.html" />
+    <Content Include="Content\ckfinder\help\fi\files\004.html" />
+    <Content Include="Content\ckfinder\help\fi\files\005.html" />
+    <Content Include="Content\ckfinder\help\fi\files\006.html" />
+    <Content Include="Content\ckfinder\help\fi\files\007.html" />
+    <Content Include="Content\ckfinder\help\fi\files\008.html" />
+    <Content Include="Content\ckfinder\help\fi\files\009.html" />
+    <Content Include="Content\ckfinder\help\fi\files\010.html" />
+    <Content Include="Content\ckfinder\help\fi\files\011.html" />
+    <Content Include="Content\ckfinder\help\fi\files\012.html" />
+    <Content Include="Content\ckfinder\help\fi\files\013.html" />
+    <Content Include="Content\ckfinder\help\fi\files\header.html" />
+    <Content Include="Content\ckfinder\help\fi\files\images\001.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\002.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\003.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\004.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\005.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\006.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\007.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\008.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\009.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\010.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\011.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\012.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\013.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\014.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\015.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\016.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\017.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\018.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\019.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\images\020.gif" />
+    <Content Include="Content\ckfinder\help\fi\files\license.html" />
+    <Content Include="Content\ckfinder\help\fi\files\suggestions.html" />
+    <Content Include="Content\ckfinder\help\fi\files\toc.html" />
+    <Content Include="Content\ckfinder\help\fi\index.html" />
+    <Content Include="Content\ckfinder\help\lt\files\001.html" />
+    <Content Include="Content\ckfinder\help\lt\files\002.html" />
+    <Content Include="Content\ckfinder\help\lt\files\003.html" />
+    <Content Include="Content\ckfinder\help\lt\files\004.html" />
+    <Content Include="Content\ckfinder\help\lt\files\005.html" />
+    <Content Include="Content\ckfinder\help\lt\files\006.html" />
+    <Content Include="Content\ckfinder\help\lt\files\007.html" />
+    <Content Include="Content\ckfinder\help\lt\files\008.html" />
+    <Content Include="Content\ckfinder\help\lt\files\009.html" />
+    <Content Include="Content\ckfinder\help\lt\files\010.html" />
+    <Content Include="Content\ckfinder\help\lt\files\011.html" />
+    <Content Include="Content\ckfinder\help\lt\files\012.html" />
+    <Content Include="Content\ckfinder\help\lt\files\013.html" />
+    <Content Include="Content\ckfinder\help\lt\files\header.html" />
+    <Content Include="Content\ckfinder\help\lt\files\images\001.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\002.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\003.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\004.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\005.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\006.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\007.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\008.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\009.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\010.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\011.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\012.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\013.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\014.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\015.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\016.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\017.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\018.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\019.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\images\020.gif" />
+    <Content Include="Content\ckfinder\help\lt\files\license.html" />
+    <Content Include="Content\ckfinder\help\lt\files\suggestions.html" />
+    <Content Include="Content\ckfinder\help\lt\files\toc.html" />
+    <Content Include="Content\ckfinder\help\lt\index.html" />
+    <Content Include="Content\ckfinder\help\pl\files\001.html" />
+    <Content Include="Content\ckfinder\help\pl\files\002.html" />
+    <Content Include="Content\ckfinder\help\pl\files\003.html" />
+    <Content Include="Content\ckfinder\help\pl\files\004.html" />
+    <Content Include="Content\ckfinder\help\pl\files\005.html" />
+    <Content Include="Content\ckfinder\help\pl\files\006.html" />
+    <Content Include="Content\ckfinder\help\pl\files\007.html" />
+    <Content Include="Content\ckfinder\help\pl\files\008.html" />
+    <Content Include="Content\ckfinder\help\pl\files\009.html" />
+    <Content Include="Content\ckfinder\help\pl\files\010.html" />
+    <Content Include="Content\ckfinder\help\pl\files\011.html" />
+    <Content Include="Content\ckfinder\help\pl\files\012.html" />
+    <Content Include="Content\ckfinder\help\pl\files\013.html" />
+    <Content Include="Content\ckfinder\help\pl\files\014.html" />
+    <Content Include="Content\ckfinder\help\pl\files\015.html" />
+    <Content Include="Content\ckfinder\help\pl\files\header.html" />
+    <Content Include="Content\ckfinder\help\pl\files\license.html" />
+    <Content Include="Content\ckfinder\help\pl\files\suggestions.html" />
+    <Content Include="Content\ckfinder\help\pl\files\toc.html" />
+    <Content Include="Content\ckfinder\help\pl\index.html" />
+    <Content Include="Content\ckfinder\install.txt" />
+    <Content Include="Content\ckfinder\lang\bg.js" />
+    <Content Include="Content\ckfinder\lang\ca.js" />
+    <Content Include="Content\ckfinder\lang\cs.js" />
+    <Content Include="Content\ckfinder\lang\cy.js" />
+    <Content Include="Content\ckfinder\lang\da.js" />
+    <Content Include="Content\ckfinder\lang\de.js" />
+    <Content Include="Content\ckfinder\lang\el.js" />
+    <Content Include="Content\ckfinder\lang\en.js" />
+    <Content Include="Content\ckfinder\lang\eo.js" />
+    <Content Include="Content\ckfinder\lang\es-mx.js" />
+    <Content Include="Content\ckfinder\lang\es.js" />
+    <Content Include="Content\ckfinder\lang\et.js" />
+    <Content Include="Content\ckfinder\lang\fa.js" />
+    <Content Include="Content\ckfinder\lang\fi.js" />
+    <Content Include="Content\ckfinder\lang\fr.js" />
+    <Content Include="Content\ckfinder\lang\gu.js" />
+    <Content Include="Content\ckfinder\lang\he.js" />
+    <Content Include="Content\ckfinder\lang\hi.js" />
+    <Content Include="Content\ckfinder\lang\hr.js" />
+    <Content Include="Content\ckfinder\lang\hu.js" />
+    <Content Include="Content\ckfinder\lang\it.js" />
+    <Content Include="Content\ckfinder\lang\ja.js" />
+    <Content Include="Content\ckfinder\lang\lt.js" />
+    <Content Include="Content\ckfinder\lang\lv.js" />
+    <Content Include="Content\ckfinder\lang\nb.js" />
+    <Content Include="Content\ckfinder\lang\nl.js" />
+    <Content Include="Content\ckfinder\lang\nn.js" />
+    <Content Include="Content\ckfinder\lang\no.js" />
+    <Content Include="Content\ckfinder\lang\pl.js" />
+    <Content Include="Content\ckfinder\lang\pt-br.js" />
+    <Content Include="Content\ckfinder\lang\ro.js" />
+    <Content Include="Content\ckfinder\lang\ru.js" />
+    <Content Include="Content\ckfinder\lang\sk.js" />
+    <Content Include="Content\ckfinder\lang\sl.js" />
+    <Content Include="Content\ckfinder\lang\sr.js" />
+    <Content Include="Content\ckfinder\lang\sv.js" />
+    <Content Include="Content\ckfinder\lang\tr.js" />
+    <Content Include="Content\ckfinder\lang\vi.js" />
+    <Content Include="Content\ckfinder\lang\zh-cn.js" />
+    <Content Include="Content\ckfinder\lang\zh-tw.js" />
+    <Content Include="Content\ckfinder\lang\_translationstatus.txt" />
+    <Content Include="Content\ckfinder\license.txt" />
+    <Content Include="Content\ckfinder\plugins\dummy\lang\en.js" />
+    <Content Include="Content\ckfinder\plugins\dummy\lang\pl.js" />
+    <Content Include="Content\ckfinder\plugins\dummy\plugin.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\addon\mode\overlay.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\lib\codemirror.css" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\lib\codemirror.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\clike\clike.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\css\css.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\htmlmixed\htmlmixed.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\javascript\javascript.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\markdown\markdown.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\perl\perl.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\python\python.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\rst\rst.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\ruby\ruby.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\sass\sass.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\stex\stex.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\xml\xml.js" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\plugin.js" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\colorbox.css" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\border.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\controls.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\ie6\borderBottomCenter.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\ie6\borderBottomLeft.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\ie6\borderBottomRight.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\ie6\borderMiddleLeft.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\ie6\borderMiddleRight.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\ie6\borderTopCenter.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\ie6\borderTopLeft.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\ie6\borderTopRight.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\loading.gif" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\loading_background.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\images\overlay.png" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\jquery.colorbox-min.js" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\jquery.min.js" />
+    <Content Include="Content\ckfinder\plugins\gallery\colorbox\license.txt" />
+    <Content Include="Content\ckfinder\plugins\imageresize\images\mini.gif" />
+    <Content Include="Content\ckfinder\plugins\imageresize\plugin.js" />
+    <Content Include="Content\ckfinder\plugins\watermark\logo.gif" />
+    <Content Include="Content\ckfinder\skins\bootstrap\app.css" />
+    <Content Include="Content\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\ckfinder\skins\bootstrap\host.css" />
+    <Content Include="Content\ckfinder\skins\bootstrap\skin.js" />
+    <Content Include="Content\ckfinder\skins\bootstrap\uipanel.css" />
+    <Content Include="Content\ckfinder\skins\kama\app.css" />
+    <Content Include="Content\ckfinder\skins\kama\host.css" />
+    <Content Include="Content\ckfinder\skins\kama\images\ckffolder.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\ckffolderopened.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\ckfminus.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\ckfnothumb.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\ckfplus.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\icons.png" />
+    <Content Include="Content\ckfinder\skins\kama\images\loaders\16x16.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\loaders\32x32.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\spacer.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\sprites.png" />
+    <Content Include="Content\ckfinder\skins\kama\images\sprites_ie6.png" />
+    <Content Include="Content\ckfinder\skins\kama\images\toolbar\add.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\toolbar\clear_basket.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\toolbar\delete.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\toolbar\download.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\toolbar\help.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\toolbar\maximize.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\toolbar\refresh.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\toolbar\settings.gif" />
+    <Content Include="Content\ckfinder\skins\kama\images\toolbar\view.gif" />
+    <Content Include="Content\ckfinder\skins\kama\richcombo.css" />
+    <Content Include="Content\ckfinder\skins\kama\skin.js" />
+    <Content Include="Content\ckfinder\skins\kama\uipanel.css" />
+    <Content Include="Content\ckfinder\skins\v1\app.css" />
+    <Content Include="Content\ckfinder\skins\v1\host.css" />
+    <Content Include="Content\ckfinder\skins\v1\images\ckffolder.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\ckffolderopened.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\ckfminus.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\ckfnothumb.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\ckfplus.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\dialog_sides.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\dialog_sides.png" />
+    <Content Include="Content\ckfinder\skins\v1\images\dialog_sides_rtl.png" />
+    <Content Include="Content\ckfinder\skins\v1\images\icons.png" />
+    <Content Include="Content\ckfinder\skins\v1\images\loaders\16x16.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\loaders\32x32.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\spacer.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\sprites.png" />
+    <Content Include="Content\ckfinder\skins\v1\images\sprites_ie6.png" />
+    <Content Include="Content\ckfinder\skins\v1\images\toolbar\add.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\toolbar\clear_basket.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\toolbar\delete.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\toolbar\download.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\toolbar\help.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\toolbar\maximize.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\toolbar\refresh.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\toolbar\settings.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\toolbar\view.gif" />
+    <Content Include="Content\ckfinder\skins\v1\images\toolbar_start.gif" />
+    <Content Include="Content\ckfinder\skins\v1\richcombo.css" />
+    <Content Include="Content\ckfinder\skins\v1\skin.js" />
+    <Content Include="Content\ckfinder\skins\v1\uipanel.css" />
+    <Content Include="Content\ckfinder\translations.txt" />
+    <Content Include="Content\ckfinder\_samples\aspx\popup.aspx" />
+    <Content Include="Content\ckfinder\_samples\aspx\popups.aspx" />
+    <Content Include="Content\ckfinder\_samples\aspx\standalone.aspx" />
+    <Content Include="Content\ckfinder\_samples\ckeditor.html" />
+    <Content Include="Content\ckfinder\_samples\index.html" />
+    <Content Include="Content\ckfinder\_samples\popup.html" />
+    <Content Include="Content\ckfinder\_samples\popups.html" />
+    <Content Include="Content\ckfinder\_samples\public_api.html" />
+    <Content Include="Content\ckfinder\_samples\sample.css" />
+    <Content Include="Content\ckfinder\_samples\skin_bootstrap.html" />
+    <Content Include="Content\ckfinder\_samples\skin_v1.html" />
+    <Content Include="Content\ckfinder\_samples\standalone.html" />
+    <Content Include="Content\ckfinder\_samples\standalone_v1.html" />
+    <Content Include="Content\js\sweet-alert.js" />
+    <Content Include="Content\multiselect-dropdown\virtual-select.min.css" />
+    <Content Include="Content\multiselect-dropdown\virtual-select.min.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\sneat-admin-pro\audio\Water_Lily.mp3" />
+    <Content Include="Content\sneat-admin-pro\css\demo.css" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\1.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\10.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\11.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\12.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\13.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\14.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\15.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\16.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\17.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\18.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\19.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\2.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\20.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\3.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\4.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\5.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\6.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\7.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\8.png" />
+    <Content Include="Content\sneat-admin-pro\img\avatars\9.png" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\1.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\10.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\11.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\12.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\13.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\14.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\15.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\16.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\17.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\18.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\2.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\3.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\4.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\5.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\6.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\7.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\8.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\9.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\backgrounds\event.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\branding\brand-img-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\branding\brand-img-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\branding\brand-img-small.png" />
+    <Content Include="Content\sneat-admin-pro\img\branding\logo.png" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\border-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\border.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\collapsed-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\collapsed.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\compact-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\compact.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\dark-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\default-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\default.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\expanded-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\expanded.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\hidden-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\hidden.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\horizontal-fixed-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\horizontal-fixed.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\horizontal-static-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\horizontal-static.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\light-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\light.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\ltr-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\ltr.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\rtl-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\rtl.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\semi-dark-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\semi-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\static-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\static.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\sticky-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\sticky.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\system-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\system.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\vertical-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\vertical.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\wide-dark.svg" />
+    <Content Include="Content\sneat-admin-pro\img\customizer\wide.svg" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-1.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-10.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-11.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-12.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-13.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-14.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-15.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-16.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-17.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-18.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-19.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-2.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-20.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-21.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-22.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-23.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-24.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-25.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-26.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-3.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-4.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-5.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-6.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-7.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-8.png" />
+    <Content Include="Content\sneat-admin-pro\img\ecommerce-images\product-9.png" />
+    <Content Include="Content\sneat-admin-pro\img\elements\1.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\10.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\11.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\12.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\13.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\14.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\15.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\16.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\17.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\18.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\19.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\2.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\20.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\21.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\3.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\4.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\5.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\6.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\7.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\8.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\elements\9.jpg" />
+    <Content Include="Content\sneat-admin-pro\img\favicon\favicon.ico" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\backgrounds\cta-bg-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\backgrounds\cta-bg-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\backgrounds\footer-bg-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\backgrounds\footer-bg-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\backgrounds\hero-bg.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo-1.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo-2.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo-3.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo-4.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo-5.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo-6.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo_1-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo_1-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo_2-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo_2-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo_3-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo_3-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo_4-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo_4-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo_5-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\branding\logo_5-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\apple-icon.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\contact-customer-service.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\cta-dashboard.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\faq-boy-with-logos.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\google-play-icon.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\hero-dashboard-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\hero-dashboard-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\hero-elements-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\hero-elements-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\team-member-1.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\team-member-2.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\team-member-3.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\landing-page\team-member-4.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\misc\checkout-image.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\misc\nav-item-col-img.png" />
+    <Content Include="Content\sneat-admin-pro\img\front-pages\misc\product-image.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\boy-app-academy.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\boy-verify-email-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\boy-verify-email-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\boy-with-laptop-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\boy-with-laptop-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\boy-with-rocket-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\boy-with-rocket-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\bulb-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\bulb-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\create-account-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\create-account-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\fleet-car.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-app-academy.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-checkout-offer-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-checkout-offer-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-doing-yoga-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-doing-yoga-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-unlock-password-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-unlock-password-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-verify-password-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-verify-password-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-with-laptop-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\girl-with-laptop-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\lady-with-laptop-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\lady-with-laptop-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\man-with-laptop-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\man-with-laptop-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\page-misc-error-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\page-misc-error-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\pencil-rocket.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\pricing-illustration-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\pricing-illustration-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\prize-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\rocket.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\shopping-girl-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\shopping-girl-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\sitting-girl-with-laptop-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\sitting-girl-with-laptop-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\superman-flying-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\illustrations\superman-flying-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-collapsed-menu-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-collapsed-menu-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-container-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-container-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-content-navbar-and-sidebar-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-content-navbar-and-sidebar-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-content-navbar-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-content-navbar-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-fluid-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-fluid-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-horizontal-container-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-horizontal-container-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-horizontal-fluid-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-horizontal-fluid-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-horizontal-without-menu-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-horizontal-without-menu-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-horizontal-without-navbar-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-horizontal-without-navbar-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-without-menu-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-without-menu-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-without-navbar-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\layouts\layout-without-navbar-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\pages\app-academy-tutor-1.png" />
+    <Content Include="Content\sneat-admin-pro\img\pages\app-academy-tutor-2.png" />
+    <Content Include="Content\sneat-admin-pro\img\pages\app-academy-tutor-3.png" />
+    <Content Include="Content\sneat-admin-pro\img\pages\app-academy-tutor-4.png" />
+    <Content Include="Content\sneat-admin-pro\img\pages\app-academy-tutor-5.png" />
+    <Content Include="Content\sneat-admin-pro\img\pages\app-academy-tutor-6.png" />
+    <Content Include="Content\sneat-admin-pro\img\pages\header.png" />
+    <Content Include="Content\sneat-admin-pro\img\pages\pricing-arrow-dark.png" />
+    <Content Include="Content\sneat-admin-pro\img\pages\pricing-arrow-light.png" />
+    <Content Include="Content\sneat-admin-pro\img\pages\profile-banner.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\1.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\2.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\facecream.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\imac-pro.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\iphone.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\logitech-mx.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\magic-mouse.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\mi-tv.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\nikejordan.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\note10.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\oneplus-lg.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\oneplus.png" />
+    <Content Include="Content\sneat-admin-pro\img\products\woodenchair.png" />
+    <Content Include="Content\sneat-admin-pro\json\ajax.php" />
+    <Content Include="Content\sneat-admin-pro\js\app-academy-course-details.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-academy-course.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-academy-dashboard.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-access-permission.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-access-roles.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-calendar-events.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-calendar.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-chat.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-category-list.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-customer-all.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-customer-detail-overview.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-customer-detail.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-dashboard.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-order-details.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-order-list.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-product-add.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-product-list.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-referral.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-reviews.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-ecommerce-settings.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-email.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-invoice-add.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-invoice-edit.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-invoice-list.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-invoice-print.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-kanban.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-logistics-dashboard.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-logistics-fleet.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-user-list.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-user-view-account.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-user-view-billing.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-user-view-security.js" />
+    <Content Include="Content\sneat-admin-pro\js\app-user-view.js" />
+    <Content Include="Content\sneat-admin-pro\js\cards-actions.js" />
+    <Content Include="Content\sneat-admin-pro\js\cards-advance.js" />
+    <Content Include="Content\sneat-admin-pro\js\cards-statistics.js" />
+    <Content Include="Content\sneat-admin-pro\js\charts-apex.js" />
+    <Content Include="Content\sneat-admin-pro\js\charts-chartjs.js" />
+    <Content Include="Content\sneat-admin-pro\js\config.js" />
+    <Content Include="Content\sneat-admin-pro\js\dashboards-analytics.js" />
+    <Content Include="Content\sneat-admin-pro\js\dashboards-crm.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-blockui.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-drag-and-drop.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-media-player.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-misc-clipboardjs.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-misc-idle-timer.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-misc-numeraljs.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-perfect-scrollbar.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-star-ratings.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-sweetalert2.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-timeline.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-tour.js" />
+    <Content Include="Content\sneat-admin-pro\js\extended-ui-treeview.js" />
+    <Content Include="Content\sneat-admin-pro\js\form-basic-inputs.js" />
+    <Content Include="Content\sneat-admin-pro\js\form-input-group.js" />
+    <Content Include="Content\sneat-admin-pro\js\form-layouts.js" />
+    <Content Include="Content\sneat-admin-pro\js\form-validation.js" />
+    <Content Include="Content\sneat-admin-pro\js\form-wizard-icons.js" />
+    <Content Include="Content\sneat-admin-pro\js\form-wizard-numbered.js" />
+    <Content Include="Content\sneat-admin-pro\js\form-wizard-validation.js" />
+    <Content Include="Content\sneat-admin-pro\js\forms-editors.js" />
+    <Content Include="Content\sneat-admin-pro\js\forms-extras.js" />
+    <Content Include="Content\sneat-admin-pro\js\forms-file-upload.js" />
+    <Content Include="Content\sneat-admin-pro\js\forms-pickers.js" />
+    <Content Include="Content\sneat-admin-pro\js\forms-selects.js" />
+    <Content Include="Content\sneat-admin-pro\js\forms-sliders.js" />
+    <Content Include="Content\sneat-admin-pro\js\forms-tagify.js" />
+    <Content Include="Content\sneat-admin-pro\js\forms-typeahead.js" />
+    <Content Include="Content\sneat-admin-pro\js\front-config.js" />
+    <Content Include="Content\sneat-admin-pro\js\front-main.js" />
+    <Content Include="Content\sneat-admin-pro\js\front-page-landing.js" />
+    <Content Include="Content\sneat-admin-pro\js\front-page-payment.js" />
+    <Content Include="Content\sneat-admin-pro\js\front-page-pricing.js" />
+    <Content Include="Content\sneat-admin-pro\js\main.js" />
+    <Content Include="Content\sneat-admin-pro\js\maps-leaflet.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-add-new-address.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-add-new-cc.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-add-permission.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-add-role.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-create-app.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-edit-cc.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-edit-permission.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-edit-user.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-enable-otp.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-share-project.js" />
+    <Content Include="Content\sneat-admin-pro\js\modal-two-factor-auth.js" />
+    <Content Include="Content\sneat-admin-pro\js\offcanvas-add-payment.js" />
+    <Content Include="Content\sneat-admin-pro\js\offcanvas-send-invoice.js" />
+    <Content Include="Content\sneat-admin-pro\js\pages-account-settings-account.js" />
+    <Content Include="Content\sneat-admin-pro\js\pages-account-settings-billing.js" />
+    <Content Include="Content\sneat-admin-pro\js\pages-account-settings-security.js" />
+    <Content Include="Content\sneat-admin-pro\js\pages-auth-multisteps.js" />
+    <Content Include="Content\sneat-admin-pro\js\pages-auth-two-steps.js" />
+    <Content Include="Content\sneat-admin-pro\js\pages-auth.js" />
+    <Content Include="Content\sneat-admin-pro\js\pages-pricing.js" />
+    <Content Include="Content\sneat-admin-pro\js\tables-datatables-advanced.js" />
+    <Content Include="Content\sneat-admin-pro\js\tables-datatables-basic.js" />
+    <Content Include="Content\sneat-admin-pro\js\tables-datatables-extensions.js" />
+    <Content Include="Content\sneat-admin-pro\js\ui-app-brand.js" />
+    <Content Include="Content\sneat-admin-pro\js\ui-cards-analytics.js" />
+    <Content Include="Content\sneat-admin-pro\js\ui-carousel.js" />
+    <Content Include="Content\sneat-admin-pro\js\ui-menu.js" />
+    <Content Include="Content\sneat-admin-pro\js\ui-modals.js" />
+    <Content Include="Content\sneat-admin-pro\js\ui-navbar.js" />
+    <Content Include="Content\sneat-admin-pro\js\ui-popover.js" />
+    <Content Include="Content\sneat-admin-pro\js\ui-toasts.js" />
+    <Content Include="Content\sneat-admin-pro\js\wizard-ex-checkout.js" />
+    <Content Include="Content\sneat-admin-pro\js\wizard-ex-create-deal.js" />
+    <Content Include="Content\sneat-admin-pro\js\wizard-ex-property-listing.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\core-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\core.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\advanced-wizard.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-academy-details.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-academy.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-calendar.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-chat.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-ecommerce.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-email.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-invoice-print.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-invoice.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-kanban.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-logistics-dashboard.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\app-logistics-fleet.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\card-analytics.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\front-page-help-center.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\front-page-landing.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\front-page-payment.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\front-page-pricing.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\front-page.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\page-account-settings.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\page-auth.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\page-faq.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\page-icons.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\page-misc.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\page-pricing.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\page-profile.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\page-user-view.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\ui-carousel.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\pages\wizard-ex-checkout.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\rtl\core-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\rtl\core.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\rtl\theme-bordered-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\rtl\theme-bordered.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\rtl\theme-default-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\rtl\theme-default.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\rtl\theme-raspberry-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\rtl\theme-raspberry.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\rtl\theme-semi-dark-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\rtl\theme-semi-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\theme-bordered-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\theme-bordered.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\theme-default-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\theme-default.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\theme-raspberry-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\theme-raspberry.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\theme-semi-dark-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\css\theme-semi-dark.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\boxicons.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\boxicons\boxicons.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flag-icons.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ad.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ae.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\af.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ag.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ai.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\al.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\am.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ao.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\aq.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ar.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\arab.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\as.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\at.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\au.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\aw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ax.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\az.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ba.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bb.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bd.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\be.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bi.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bj.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bo.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bq.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\br.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bs.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\by.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\bz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ca.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cd.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cefta.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ch.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ci.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ck.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\co.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cp.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cx.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cy.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\cz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\de.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\dg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\dj.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\dk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\dm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\do.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\dz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\eac.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ec.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ee.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\eg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\eh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\er.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\es-ct.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\es-ga.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\es-pv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\es.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\et.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\eu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\fi.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\fj.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\fk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\fm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\fo.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\fr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ga.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gb-eng.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gb-nir.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gb-sct.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gb-wls.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gb.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gd.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ge.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gi.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gp.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gq.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gs.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\gy.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\hk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\hm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\hn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\hr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ht.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\hu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ic.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\id.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ie.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\il.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\im.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\in.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\io.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\iq.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ir.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\is.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\it.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\je.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\jm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\jo.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\jp.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ke.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\kg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\kh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ki.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\km.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\kn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\kp.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\kr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\kw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ky.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\kz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\la.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\lb.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\lc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\li.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\lk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\lr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ls.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\lt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\lu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\lv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ly.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ma.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\md.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\me.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ml.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mo.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mp.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mq.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ms.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mx.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\my.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\mz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\na.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\nc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ne.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\nf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ng.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ni.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\nl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\no.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\np.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\nr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\nu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\nz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\om.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pa.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pe.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ph.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ps.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\pw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\py.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\qa.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\re.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ro.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\rs.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ru.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\rw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sa.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sb.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sd.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\se.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sh-ac.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sh-hl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sh-ta.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\si.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sj.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\so.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ss.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\st.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sx.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sy.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\sz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\td.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\th.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tj.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\to.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\tz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ua.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ug.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\um.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\un.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\us.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\uy.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\uz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\va.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\vc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ve.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\vg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\vi.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\vn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\vu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\wf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ws.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\xk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\xx.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\ye.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\yt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\za.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\zm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\1x1\zw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ad.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ae.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\af.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ag.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ai.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\al.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\am.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ao.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\aq.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ar.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\arab.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\as.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\at.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\au.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\aw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ax.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\az.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ba.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bb.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bd.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\be.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bi.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bj.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bo.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bq.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\br.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bs.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\by.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\bz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ca.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cd.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cefta.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ch.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ci.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ck.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\co.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cp.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cx.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cy.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\cz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\de.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\dg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\dj.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\dk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\dm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\do.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\dz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\eac.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ec.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ee.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\eg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\eh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\er.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\es-ct.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\es-ga.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\es-pv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\es.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\et.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\eu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\fi.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\fj.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\fk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\fm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\fo.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\fr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ga.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gb-eng.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gb-nir.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gb-sct.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gb-wls.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gb.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gd.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ge.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gi.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gp.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gq.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gs.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\gy.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\hk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\hm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\hn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\hr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ht.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\hu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ic.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\id.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ie.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\il.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\im.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\in.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\io.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\iq.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ir.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\is.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\it.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\je.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\jm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\jo.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\jp.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ke.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\kg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\kh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ki.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\km.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\kn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\kp.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\kr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\kw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ky.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\kz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\la.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\lb.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\lc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\li.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\lk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\lr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ls.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\lt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\lu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\lv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ly.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ma.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\md.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\me.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ml.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mo.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mp.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mq.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ms.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mx.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\my.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\mz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\na.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\nc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ne.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\nf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ng.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ni.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\nl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\no.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\np.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\nr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\nu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\nz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\om.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pa.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pe.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ph.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ps.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\pw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\py.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\qa.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\re.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ro.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\rs.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ru.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\rw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sa.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sb.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sd.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\se.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sh-ac.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sh-hl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sh-ta.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sh.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\si.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sj.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\so.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ss.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\st.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sx.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sy.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\sz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\td.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\th.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tj.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tl.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\to.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tr.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tv.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\tz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ua.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ug.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\um.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\un.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\us.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\uy.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\uz.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\va.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\vc.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ve.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\vg.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\vi.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\vn.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\vu.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\wf.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ws.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\xk.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\xx.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\ye.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\yt.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\za.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\zm.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\flags\4x3\zw.svg" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\fontawesome.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\js\bootstrap.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\js\dropdown-hover.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\js\helpers.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\js\mega-dropdown.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\js\menu.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\js\template-customizer.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\%40form-validation\auto-focus.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\%40form-validation\bootstrap5.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\%40form-validation\form-validation.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\%40form-validation\popular.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\animate-css\animate.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\animate-on-scroll\animate-on-scroll.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\animate-on-scroll\animate-on-scroll.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\apex-charts\apex-charts.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\apex-charts\apexcharts.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\autosize\autosize.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\block-ui\block-ui.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bloodhound\bloodhound.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bootstrap-datepicker\bootstrap-datepicker.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bootstrap-datepicker\bootstrap-datepicker.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bootstrap-daterangepicker\bootstrap-daterangepicker.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bootstrap-daterangepicker\bootstrap-daterangepicker.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bootstrap-maxlength\bootstrap-maxlength.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bootstrap-maxlength\bootstrap-maxlength.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bootstrap-select\bootstrap-select.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bootstrap-select\bootstrap-select.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bs-stepper\bs-stepper.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\bs-stepper\bs-stepper.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\chartjs\chartjs.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\cleavejs\cleave-phone.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\cleavejs\cleave.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\clipboard\clipboard.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\datatables-bs5\datatables-bootstrap5.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\datatables-bs5\datatables.bootstrap5.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\datatables-buttons-bs5\buttons.bootstrap5.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\datatables-checkboxes-jquery\datatables.checkboxes.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\datatables-fixedcolumns-bs5\fixedcolumns.bootstrap5.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\datatables-fixedheader-bs5\fixedheader.bootstrap5.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\datatables-responsive-bs5\responsive.bootstrap5.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\datatables-rowgroup-bs5\rowgroup.bootstrap5.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\datatables-select-bs5\select.bootstrap5.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\dropzone\dropzone.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\dropzone\dropzone.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\flatpickr\flatpickr.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\flatpickr\flatpickr.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\fullcalendar\fullcalendar.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\fullcalendar\fullcalendar.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\hammer\hammer.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\highlight\highlight-github.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\highlight\highlight.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\highlight\highlight.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\i18n\i18n.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\idletimer\idletimer.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jkanban\jkanban.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jkanban\jkanban.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jquery-repeater\jquery-repeater.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jquery-sticky\jquery-sticky.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jquery-timepicker\jquery-timepicker.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jquery-timepicker\jquery-timepicker.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jquery\jquery.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jstree\jstree.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jstree\jstree.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jstree\themes\default-dark\32px.png" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jstree\themes\default-dark\40px.png" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jstree\themes\default-dark\throbber.gif" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jstree\themes\default\32px.png" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jstree\themes\default\40px.png" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\jstree\themes\default\throbber.gif" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\leaflet\images\layers-2x.png" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\leaflet\images\layers.png" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\leaflet\images\marker-icon-2x.png" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\leaflet\images\marker-icon.png" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\leaflet\images\marker-shadow.png" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\leaflet\leaflet.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\leaflet\leaflet.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\mapbox-gl\mapbox-gl.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\mapbox-gl\mapbox-gl.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\masonry\masonry.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\moment\moment.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\nouislider\nouislider.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\nouislider\nouislider.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\numeral\numeral.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\pickr\pickr-themes.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\pickr\pickr.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\plyr\plyr.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\plyr\plyr.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\popper\popper.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\editor.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\katex.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\katex.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\quill.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\typography.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\rateyo\rateyo.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\rateyo\rateyo.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\select2\select2.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\select2\select2.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\shepherd\shepherd.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\shepherd\shepherd.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\sortablejs\sortable.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\spinkit\spinkit.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\sweetalert2\sweetalert2.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\sweetalert2\sweetalert2.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\swiper\swiper.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\swiper\swiper.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\tagify\tagify.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\tagify\tagify.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\toastr\toastr.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\toastr\toastr.js" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\typeahead-js\typeahead.css" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\typeahead-js\typeahead.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\sneat-admin-pro\json\app-academy-dashboard.json" />
+    <Content Include="Content\sneat-admin-pro\json\app-ecommerce-reviews.json" />
+    <Content Include="Content\sneat-admin-pro\json\ecommerce-category-list.json" />
+    <Content Include="Content\sneat-admin-pro\json\ecommerce-customer-all.json" />
+    <Content Include="Content\sneat-admin-pro\json\ecommerce-customer-order.json" />
+    <Content Include="Content\sneat-admin-pro\json\ecommerce-order-details.json" />
+    <Content Include="Content\sneat-admin-pro\json\ecommerce-product-list.json" />
+    <Content Include="Content\sneat-admin-pro\json\ecommerce-referral.json" />
+    <Content Include="Content\sneat-admin-pro\json\invoice-list.json" />
+    <Content Include="Content\sneat-admin-pro\json\jstree-data.json" />
+    <Content Include="Content\sneat-admin-pro\json\kanban.json" />
+    <Content Include="Content\sneat-admin-pro\json\locales\ar.json" />
+    <Content Include="Content\sneat-admin-pro\json\locales\de.json" />
+    <Content Include="Content\sneat-admin-pro\json\locales\en.json" />
+    <Content Include="Content\sneat-admin-pro\json\locales\fr.json" />
+    <Content Include="Content\sneat-admin-pro\json\logistics-dashboard.json" />
+    <Content Include="Content\sneat-admin-pro\json\permissions-list.json" />
+    <Content Include="Content\sneat-admin-pro\json\projects-list.json" />
+    <Content Include="Content\sneat-admin-pro\json\search-horizontal.json" />
+    <Content Include="Content\sneat-admin-pro\json\search-vertical.json" />
+    <Content Include="Content\sneat-admin-pro\json\table-datatable.json" />
+    <Content Include="Content\sneat-admin-pro\json\table-ecommerce.json" />
+    <Content Include="Content\sneat-admin-pro\json\typeahead-data-2.json" />
+    <Content Include="Content\sneat-admin-pro\json\typeahead.json" />
+    <Content Include="Content\sneat-admin-pro\json\user-list.json" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\boxicons\boxicons.eot" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\boxicons\boxicons.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\boxicons\boxicons.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\boxicons\boxicons.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\fontawesome\fa-brands-400.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\fontawesome\fa-brands-400.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\fontawesome\fa-regular-400.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\fontawesome\fa-regular-400.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\fontawesome\fa-solid-900.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\fontawesome\fa-solid-900.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\fontawesome\fa-v4compatibility.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\fonts\fontawesome\fa-v4compatibility.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_AMS-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_AMS-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_AMS-Regular.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Caligraphic-Bold.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Caligraphic-Bold.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Caligraphic-Bold.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Caligraphic-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Caligraphic-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Caligraphic-Regular.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Fraktur-Bold.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Fraktur-Bold.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Fraktur-Bold.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Fraktur-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Fraktur-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Fraktur-Regular.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-Bold.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-Bold.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-Bold.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-BoldItalic.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-BoldItalic.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-BoldItalic.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-Italic.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-Italic.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-Italic.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Main-Regular.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Math-BoldItalic.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Math-BoldItalic.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Math-BoldItalic.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Math-Italic.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Math-Italic.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Math-Italic.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_SansSerif-Bold.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_SansSerif-Bold.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_SansSerif-Bold.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_SansSerif-Italic.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_SansSerif-Italic.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_SansSerif-Italic.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_SansSerif-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_SansSerif-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_SansSerif-Regular.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Script-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Script-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Script-Regular.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size1-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size1-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size1-Regular.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size2-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size2-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size2-Regular.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size3-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size3-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size3-Regular.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size4-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size4-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Size4-Regular.woff2" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Typewriter-Regular.ttf" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Typewriter-Regular.woff" />
+    <Content Include="Content\sneat-admin-pro\vendor\libs\quill\fonts\KaTeX_Typewriter-Regular.woff2" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Content\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ScriptModel\home-script.js" />
+    <Content Include="Scripts\ScriptModel\permission-scipt.js" />
+    <Content Include="Scripts\ScriptModel\project-script.js" />
+    <Content Include="Scripts\ScriptModel\role-script.js" />
+    <Content Include="Scripts\ScriptModel\team-script.js" />
+    <Content Include="Scripts\ScriptModel\user-script.js" />
+    <Content Include="Scripts\ScriptModel\work-package-script.js" />
+    <Content Include="Scripts\sweet-alert.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\_CommonMasterLayout.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\LayoutComponent\_Footer.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\LayoutComponent\_Macros.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\LayoutComponent\_Navbar.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\LayoutComponent\_NavbarPartial.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\LayoutComponent\_VerticalMenu.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\Localization\_Variables.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\RenderSection\_Scripts.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\RenderSection\_ScriptsIncludes.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\RenderSection\_Styles.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\UI\_Alerts.cshtml" />
+    <Content Include="Views\Shared\_SneatProLayout.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\_ListUser.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Shared\SneatProComponents\UI\_Modal.cshtml" />
+    <Content Include="Views\Users\Update.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Users\UserProfile.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\_ListRole.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
+    <Content Include="Views\Teams\_ListTeam.cshtml" />
+    <Content Include="Views\Teams\_ListUserOption.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\_ListProject.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Update.cshtml" />
+    <Content Include="Views\Projects\_ListUserProject.cshtml" />
+    <Content Include="Views\Projects\PersonalProjects.cshtml" />
+    <Content Include="Views\Projects\ProjectDetail.cshtml" />
+    <Content Include="Views\Projects\_ListUserProjectDetail.cshtml" />
+    <Content Include="Views\WorkPackage\_ListWorkPackage.cshtml" />
+    <Content Include="Views\Projects\_ProjectOverview.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Uploads\files\" />
+    <Folder Include="Views\Addresss\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202407121600173_first_init.resx">
+      <DependentUpon>202407121600173_first_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407140841060_add-user-avatar.resx">
+      <DependentUpon>202407140841060_add-user-avatar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407221647474_user-detail table.resx">
+      <DependentUpon>202407221647474_user-detail table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407230930465_update_database.resx">
+      <DependentUpon>202407230930465_update_database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407231455119_update_user_detail.resx">
+      <DependentUpon>202407231455119_update_user_detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407240216169_user-detail-identity.resx">
+      <DependentUpon>202407240216169_user-detail-identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407251020527_add-qr-url-user-detail.resx">
+      <DependentUpon>202407251020527_add-qr-url-user-detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407260637289_update-dob-user-detail.resx">
+      <DependentUpon>202407260637289_update-dob-user-detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407290201281_add-role-permission.resx">
+      <DependentUpon>202407290201281_add-role-permission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407290208419_add-user-role table.resx">
+      <DependentUpon>202407290208419_add-user-role table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407290937016_update-permission-table.resx">
+      <DependentUpon>202407290937016_update-permission-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407310714596_add-permission-icon.resx">
+      <DependentUpon>202407310714596_add-permission-icon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408031536239_add_team_table.resx">
+      <DependentUpon>202408031536239_add_team_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408060137433_add-relationship-user-team.resx">
+      <DependentUpon>202408060137433_add-relationship-user-team.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408071502375_add-table-project.resx">
+      <DependentUpon>202408071502375_add-table-project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408112223301_add-relaionship-project-user.resx">
+      <DependentUpon>202408112223301_add-relaionship-project-user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408250252568_add-project-role.resx">
+      <DependentUpon>202408250252568_add-project-role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408261504578_add-work-package-table.resx">
+      <DependentUpon>202408261504578_add-work-package-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409020324153_add_user_workpackage.resx">
+      <DependentUpon>202409020324153_add_user_workpackage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409030343593_fake-relationship-workpackage-project.resx">
+      <DependentUpon>202409030343593_fake-relationship-workpackage-project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409112240406_add_token_user.resx">
+      <DependentUpon>202409112240406_add_token_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409132049425_add-document-table.resx">
+      <DependentUpon>202409132049425_add-document-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409132104493_update-document-table.resx">
+      <DependentUpon>202409132104493_update-document-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409151429043_add-sprint-table.resx">
+      <DependentUpon>202409151429043_add-sprint-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409151536010_add-parentid-work-package.resx">
+      <DependentUpon>202409151536010_add-parentid-work-package.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409151536441_fix-parentid-work-package.resx">
+      <DependentUpon>202409151536441_fix-parentid-work-package.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409151655412_add-relationship-sprint-task.resx">
+      <DependentUpon>202409151655412_add-relationship-sprint-task.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409160623051_add_sprint_fk.resx">
+      <DependentUpon>202409160623051_add_sprint_fk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409161525422_add-timelog-table.resx">
+      <DependentUpon>202409161525422_add-timelog-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409161541025_time-log-task.resx">
+      <DependentUpon>202409161541025_time-log-task.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409161543051_time-log-task-relation.resx">
+      <DependentUpon>202409161543051_time-log-task-relation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409191211293_parent-work-package.resx">
+      <DependentUpon>202409191211293_parent-work-package.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409191217094_add-member-fk.resx">
+      <DependentUpon>202409191217094_add-member-fk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409191250011_add-teamIds-field.resx">
+      <DependentUpon>202409191250011_add-teamIds-field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409191726592_set-hours-to-double.resx">
+      <DependentUpon>202409191726592_set-hours-to-double.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54824</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44333/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

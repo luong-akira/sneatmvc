@@ -1,0 +1,73 @@
+﻿@using Sneat.MVC.Models.DTO.User
+@using Sneat.MVC.Models.DTO.Project;
+@using Sneat.MVC.Common
+@model ProjectOutputModel
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+
+<div class="row mb-3">
+    <div class="col-12 col-lg-6">
+        <div class="card mb-4">
+            <h5 class="card-header" @*data-i18n="User"*@>Mô tả dự án</h5>
+            <div class="card-body">
+                <div class="col-md col-12 mb-md-0 mb-2">
+                    <i>@Html.Raw(HttpUtility.HtmlDecode(Model.Description))</i>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="card mb-4">
+            <h5 class="card-header" @*data-i18n="User"*@>Trạng thái hoạt động</h5>
+            <div class="card-body">
+                <div class="col-md col-12 mb-md-0 mb-2">
+                    @if (Model.Status == SystemParam.ACTIVE)
+                    {
+                        <span class="badge bg-label-success me-1">@Model.StatusStr</span>
+                    }
+                    else if (Model.Status == SystemParam.IN_ACTIVE)
+                    {
+                        <span class="badge bg-label-danger me-1">@Model.StatusStr</span>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-lg-12 mb-md-0 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="card-title m-0 me-2">Thành viên</h5>
+                <div class="dropdown">
+                    <button class="btn p-0"
+                            type="button"
+                            id="teamMemberList"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        <i class="bx bx-dots-vertical-rounded"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="teamMemberList">
+                        <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+                        <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                        <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive" id="list_user_project_detail">
+                @{ Html.RenderAction("SearchUserProjectDetail", "Projects", new { Page = 1, projectID = Model.ID, search = "" }); }
+
+            </div>
+        </div>
+    </div>
+</div>

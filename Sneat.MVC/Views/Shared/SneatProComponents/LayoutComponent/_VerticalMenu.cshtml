@@ -1,0 +1,139 @@
+﻿@{
+    TempData.Keep();
+    string currentPage = ViewContext.HttpContext.Request.Path;
+}
+@using Sneat.MVC.Models.DTO.User
+@using Sneat.MVC.Common
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    @Html.Partial("SneatProComponents/LayoutComponent/_Macros", false)
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboards -->
+        @if (ss.PermissionTabs.Contains("homePageTab"))
+        {
+            <li class='menu-item@(currentPage.EndsWith("/") || currentPage.StartsWith("/Home/") ? " active open" : "")'>
+                <a href="/Home/Index" class="menu-link ">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div class="text-truncate" data-i18n="Dashboards">Trang chủ</div>
+                    @*<span class="badge badge-center rounded-pill bg-danger ms-auto">5</span>*@
+                </a>
+                @* <ul class="menu-sub">
+                    <li class='menu-item@(currentPage == "/" ? " active" : "")'>
+                        <a href="dashboards-analytics.html" class="menu-link">
+                            <div class="text-truncate" data-i18n="Analytics">Analytics</div>
+                        </a>
+                    </li>
+                    <li class='menu-item@(currentPage == "/Dashboards/CRM" ? " active" : "")'>
+                        <a href="dashboards-crm.html" class="menu-link">
+                            <div class="text-truncate" data-i18n="CRM">CRM</div>
+                        </a>
+                    </li>
+
+                </ul>*@
+            </li>
+
+        }
+
+
+        <!-- Layouts -->
+        @*  <li class='menu-item@(currentPage.StartsWith("/LayoutExamples") ? " active open" : "")'>
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div class="text-truncate" data-i18n="Layouts">Layouts</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class='menu-item@(currentPage == "/LayoutExamples/WithoutMenu" ? " active" : "")'>
+                    <a href="layouts-collapsed-menu.html" class="menu-link">
+                        <div class="text-truncate" data-i18n="Collapsed menu">Collapsed menu</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>*@
+
+
+        <!-- Authorization -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text" @*data-i18n="Apps & Pages"*@>Quản lý tài khoản</span>
+        </li>
+
+        @if (ss.PermissionTabs.Contains("viewUserTab"))
+        {
+            <li class='menu-item@(currentPage == "/Users/Index"
+         || currentPage == "/Users/Create" ? " active" : "")'>
+                <a href="/Users/Index" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-user"></i>
+                    <div class="text-truncate" @*data-i18n="User"*@>Tài khoản</div>
+                </a>
+            </li>
+        }
+
+        @if (ss.PermissionTabs.Contains("viewRoleTab"))
+        {
+            <li class='menu-item@(currentPage == "/Roles/Index"
+        || currentPage == "/Roles/Create" ? " active" : "")'>
+                <a href="/Roles/Index" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-key"></i>
+                    <div class="text-truncate" @*data-i18n="User"*@>Phân quyền</div>
+                </a>
+            </li>
+        }
+
+        <!-- Team management -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text" @*data-i18n="Apps & Pages"*@>Quản lý dự án</span>
+        </li>
+      
+
+        <li class='menu-item@(currentPage == "/Projects/Index"
+|| currentPage == "/Projects/Create"
+|| currentPage == "/Projects/Update" 
+|| currentPage == "/Projects/PersonalProjects" 
+|| currentPage == "/Projects/ProjectDetail" ? " active open" : "")'>
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bxl-product-hunt"></i>
+                <div class="text-truncate" @*data-i18n="User"*@>Dự án</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class='menu-item@(currentPage == "/Projects/Index" ? " active" : "")'>
+                    <a href="/Projects/Index" class="menu-link">
+                        <div class="text-truncate" @*data-i18n="User"*@>Danh sách dự án</div>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="menu-sub">
+                <li class='menu-item@(currentPage == "/Projects/PersonalProjects"
+        || currentPage == "/Projects/ProjectDetail" ? " active" : "")'>
+                    <a href="/Projects/PersonalProjects" class="menu-link">
+                        <div class="text-truncate" @*data-i18n="User"*@>Dự án của tôi</div>
+                        <span class="badge badge-center rounded-pill bg-success ms-auto">@ss.TotalProjects</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        @if (ss.PermissionTabs.Contains("viewTeamTab"))
+        {
+            <li class='menu-item@(currentPage == "/Teams/Index"
+        || currentPage == "/Teams/Create" ? " active" : "")'>
+                <a href="/Teams/Index" class="menu-link">
+                    <i class='menu-icon tf-icons bx bx-group'></i>
+                    <div class="text-truncate" @*data-i18n="User"*@>Đội nhóm</div>
+                </a>
+            </li>
+        }
+
+    </ul>
+</aside>

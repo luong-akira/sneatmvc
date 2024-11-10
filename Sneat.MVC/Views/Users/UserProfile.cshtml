@@ -1,0 +1,261 @@
+﻿@{
+    Layout = "~/Views/Shared/_SneatProLayout.cshtml";
+    ViewData["title"] = "Update User";
+}
+@using Sneat.MVC.Models.DTO.User;
+@using Sneat.MVC.Common
+@model UpdateUserInputModel
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+        <div class="col-xl-12">
+            <h6 class="text-muted">Filled Pills</h6>
+            <div class="nav-align-top mb-4">
+                <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <button type="button"
+                                class="nav-link active"
+                                role="tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#navs-pills-justified-home"
+                                aria-controls="navs-pills-justified-home"
+                                aria-selected="true">
+                            <i class="tf-icons bx bx-user me-1"></i> Profile
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button"
+                                class="nav-link"
+                                role="tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#navs-pills-justified-profile"
+                                aria-controls="navs-pills-justified-profile"
+                                aria-selected="false">
+                            <i class="tf-icons bx bx-lock-alt me-1"></i> Security
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button"
+                                class="nav-link"
+                                role="tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#navs-pills-justified-messages"
+                                aria-controls="navs-pills-justified-messages"
+                                aria-selected="false">
+                            <i class="tf-icons bx bx-message-square me-1"></i> Messages
+                            <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-danger ms-1">3</span>
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="navs-pills-justified-home" role="tabpanel">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 order-1 order-md-0">
+                                <div class="customer-avatar-section">
+                                    <div class="d-flex align-items-center flex-column">
+                                        <img class="img-fluid rounded my-3"
+                                             src="@Model.Avatar"
+                                             height="110"
+                                             width="110"
+                                             alt="User avatar" />
+                                        <div class="customer-info text-center">
+                                            <h4 class="mb-1">@Model.Name</h4>
+                                            <small>Customer ID #634759</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="info-container">
+                                    <small class="d-block pt-4 border-top fw-normal text-uppercase text-muted my-3">Thông tin cá nhân</small>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-3">
+                                            <span class="fw-medium me-2">Tên đăng nhập:</span>
+                                            <span>@Model.Name</span>
+                                        </li>
+                                        <li class="mb-3">
+                                            <span class="fw-medium me-2">Email:</span>
+                                            <span>@Model.Email</span>
+                                        </li>
+                                        <li class="mb-3">
+                                            <span class="fw-medium me-2">Trạng thái:</span>
+                                            @if (Model.Status == SystemParam.ACTIVE)
+                                            {
+                                                <span class="badge bg-label-success">Hoạt động</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-label-danger">Ngưng hoạt động</span>
+                                            }
+
+                                        </li>
+                                        <li class="mb-3">
+                                            <span class="fw-medium me-2">Số điện thoại:</span>
+                                            <span>@Model.Phone</span>
+                                        </li>
+                                    </ul>
+
+                                    <div class="d-flex justify-content-center">
+                                        <a href="javascript:;"
+                                           class="btn btn-primary me-3"
+                                           data-bs-target="#editProfile"
+                                           data-bs-toggle="modal">Cập nhật</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="navs-pills-justified-profile" role="tabpanel">
+                        <div id="formChangePassword">
+                           
+                            <div class="row">
+                                <div class="mb-3 col-6 col-sm-6">
+                                    <div class="alert alert-warning" role="alert">
+                                        <h6 class="alert-heading mb-2 pb-1">Đảm bảo mật khẩu đủ các điều kiện sau</h6>
+                                        <span>Có ít nhất 6 ký tự</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-6 col-sm-6">
+                                    <div class="row">
+                                        <div class="mb-3 col-12 col-sm-12 form-password-toggle">
+                                            <label class="form-label" for="newPassword">Mật khẩu cũ</label>
+                                            <div class="input-group input-group-merge">
+                                                <input class="form-control"
+                                                       type="password"
+                                                       id="txtCurrentPassword"
+                                                       name="newPassword"
+                                                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3 col-12 col-sm-12 form-password-toggle">
+                                            <label class="form-label" for="newPassword">Mật khẩu mới</label>
+                                            <div class="input-group input-group-merge">
+                                                <input class="form-control"
+                                                       type="password"
+                                                       id="txtNewPassword"
+                                                       name="newPassword"
+                                                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3 col-12 col-sm-12 form-password-toggle">
+                                            <label class="form-label" for="confirmPassword">Xác nhận mật khẩu mới</label>
+                                            <div class="input-group input-group-merge">
+                                                <input class="form-control"
+                                                       type="password"
+                                                       name="confirmPassword"
+                                                       id="txtConfirmPassword"
+                                                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                          
+                            <div class="row">
+                                <div>
+                                    <button onclick="changePassword()" class="btn btn-primary me-2">Thay đổi mật khẩu</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="navs-pills-justified-messages" role="tabpanel">
+                        <p>
+                            Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies
+                            cupcake gummi bears cake chocolate.
+                        </p>
+                        <p class="mb-0">
+                            Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet
+                            roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly
+                            jelly-o tart brownie jelly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editProfile" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-simple modal-edit-user">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                    <h3>Cập nhật thông tin cá nhân</h3>
+                    <p>Chỉnh sửa thông tin cá nhân của bạn tại đây.</p>
+                </div>
+                <div id="editUserForm" class="row g-3">
+                    <div class="row mt-2">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <strong>Ảnh đại diện</strong>
+
+                                <div class="col-md-8" id="divAddImg">
+                                    <div action="/Home/UploadFiles" class="dropzone needsclick" id="dropzone-basic">
+                                        <div class="dz-message needsclick">
+                                            Drop files here or click to upload
+                                            <span class="note needsclick">
+                                                Hãy tải ảnh Avatar người dùng tại đây (chỉ được tải duy nhất một ảnh)
+                                            </span>
+                                        </div>
+                                        <div class="fallback">
+                                            <input name="file" type="file" id="fileInput" />
+                                        </div>
+                                        <input type="hidden" id="currentImage" value="@Model.Avatar">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6">
+
+                            <div class="mb-3">
+                                <strong>Tên tài khoản</strong><span style="color:red"> *</span>
+                                <input type="text" value="@Model.Name" class="form-control" id="nameCreate" name="name" required placeholder="Tên tài khoản">
+                            </div>
+
+                            <div class="mb-3">
+                                <strong>Email</strong><span style="color:red"> *</span>
+                                <input type="text" value="@Model.Email" class="form-control" id="emailCreate" name="email" required placeholder="Nhập email">
+                            </div>
+
+                            <div class="mb-3">
+                                <strong>Số điện thoại</strong><span style="color:red"> *</span>
+                                <input type="number" value="@Model.Phone" class="form-control" id="input-add-phone" name="phone" required placeholder="Nhập số điện thoại">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-center">
+                        <button onclick="saveUpdateProfile(@Model.ID)" class="btn btn-primary me-sm-3 me-1">Cập nhật</button>
+                        <button type="reset"
+                                class="btn btn-label-secondary"
+                                data-bs-dismiss="modal"
+                                aria-label="Close">
+                            Hủy
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ScriptModel/user-script.js"></script>

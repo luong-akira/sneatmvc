@@ -1,0 +1,48 @@
+﻿@* @inject IHttpContextAccessor httpContextAccessor *@
+
+<!doctype html>
+
+<html lang="en"
+      class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="../Content/sneat-admin-pro/"
+      @*  data-assets-path='@((httpContextAccessor.HttpContext?.Request.PathBase ?? "") + "/")'*@
+      data-template="vertical-menu-template">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    @{
+        string title = ViewData["title"] as string ?? "";
+    }
+
+    <title>@title</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/Content/sneat-admin-pro/img/favicon/favicon.ico" />
+
+    <!-- Vendor Styles -->
+    @RenderSection("VendorStyles", required: false)
+
+    <!-- Page Styles -->
+    @RenderSection("PageStyles", required: false)
+
+    @Html.Partial("SneatProComponents/RenderSection/_Styles")
+
+    @Html.Partial("SneatProComponents/RenderSection/_ScriptsIncludes")
+</head>
+
+<body>
+    @RenderBody()
+    <!-- / Layout wrapper -->
+    @Html.Partial("SneatProComponents/RenderSection/_Scripts")
+    <!-- Vendor Scripts -->
+    @RenderSection("VendorScripts", required: false)
+    <!-- Page Scripts-->
+    @RenderSection("PageScripts", required: false)
+</body>
+</html>

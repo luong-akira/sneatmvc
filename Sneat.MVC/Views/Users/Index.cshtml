@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_SneatProLayout.cshtml";
+    ViewData["title"] = "User management";
+}
+@using Sneat.MVC.Models.DTO.User
+@using Sneat.MVC.Common
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light" @*data-i18n="User"*@>Quản lý tài khoản /</span> Tài khoản</h4>
+
+        <div class="card">
+            <h5 class="card-header" @*data-i18n="User"*@>Danh sách tài khoản</h5>
+            <div class="row mb-2  px-md-4 px-2">
+                <div class="col-md-4 offset-md-0">
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                        <input type="text" class="form-control " id="txt-key-search" placeholder="Tên tài khoản, số điện thoại, email" onchange="searchUser()" />
+                    </div>
+                </div>
+                <div class="col-md-4 offset-md-0">
+                    <select id="slTeam" class="select2 form-select form-select-lg" data-allow-clear="true" onchange="searchUser()">
+                        <option value="">--- Đội nhóm ---</option>
+                        @foreach (var team in ViewBag.ListTeams)
+                        {
+                            <option value="@team.ID">@team.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2 px-md-4 px-2">
+                <div class="col-md-12">
+                    <!-- Use col-md-12 and text-md-right -->
+                    @if (ss.PermissionTabs.Contains("createUserTab"))
+                    {
+                        <a title="Thêm tài khoản" style="float: right" class="btn btn-primary" href="/Users/Create">
+                            <i class='menu-icon tf-icons bx bx-user-plus'></i>
+                            Thêm mới
+                        </a>
+                    }
+
+                </div>
+            </div>
+
+            @if (ss.PermissionTabs.Contains("viewUserTab"))
+            {
+                <div class=" table-responsive px-md-4 px-2" id="list_user">
+                    @{ Html.RenderAction("Search", "Users", new { Page = 1, search = "" }); }
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+    <div class="content-backdrop fade"></div>
+</div>
+
+<script src="~/Scripts/ScriptModel/user-script.js"></script>

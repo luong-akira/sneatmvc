@@ -1,0 +1,232 @@
+﻿@{
+    Layout = "~/Views/Shared/_SneatProLayout.cshtml";
+    ViewData["title"] = "Project detail";
+}
+@using Sneat.MVC.Models.DTO.User
+@using Sneat.MVC.Models.DTO.Project;
+@using Sneat.MVC.Common
+@model ProjectOutputModel
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light" @*data-i18n="User"*@>Quản lý dự án / Dự án của tôi /</span>  @Model.Name</h4>
+
+        <div class="row mb-3">
+            <div class="col-md-12 col-xs-12">
+                <div class="mt-1 mb-1 pull-right pr-10 pb-10">
+
+                    <div class="btn-group" style="float: right;">
+                        <button type="button"
+                                class="btn btn-label-primary dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Tùy chọn
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="javascript:void(0);" onclick="projectOverview(@Model.ID);">Tổng quan</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="project-overview-container" class="mb-3">
+            @{ Html.RenderAction("ProjectOverview", "Projects", new { projectID = Model.ID }); }
+        </div>
+
+        <div id="project-task-container">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Nhiệm vụ</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-2 px-md-4 px-2">
+                        <div class="col-md-4 offset-md-0">
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                                <input type="text" class="form-control " id="txt-key-search-task" placeholder="Tiêu đề, tên, email thành viên" onchange="searchWorkPackageProject(@Model.ID)" />
+                            </div>
+                        </div>
+                        <div class="col-md-4 offset-md-0">
+                            <select id="slPriority" class="selectpicker w-100" data-style="btn-default" onchange="searchWorkPackageProject(@Model.ID)">
+                                <option value="">-- Chọn độ ưu tiên --</option>
+                                <option value="@SystemParam.PRIORITY_TYPE_HOT_FIX">@SystemParam.PRIORITY_TYPE_HOT_FIX_STR</option>
+                                <option value="@SystemParam.PRIORITY_TYPE_IMMEDIATE">@SystemParam.PRIORITY_TYPE_IMMEDIATE_STR</option>
+                                <option value="@SystemParam.PRIORITY_TYPE_HIGH">@SystemParam.PRIORITY_TYPE_HIGH_STR</option>
+                                <option value="@SystemParam.PRIORITY_TYPE_NORMAL">@SystemParam.PRIORITY_TYPE_NORMAL_STR</option>
+                                <option value="@SystemParam.PRIORITY_TYPE_LOW">@SystemParam.PRIORITY_TYPE_LOW_STR</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-4 offset-md-0">
+                            <select id="slUserProject" class="select2 form-select" onchange="testmultiple()" multiple>
+                                <option value="">-- Chọn thành viên --</option>
+                                @foreach (var mem in ViewBag.ListUserProject)
+                                {
+                                    <option value="@mem.ID">@mem.UserName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2 mt-2 px-md-4 px-2">
+                        <div class="col-md-12 mb-2">
+                            <button class="btn btn-primary"
+                                    type="button"
+                                    style="float: right"
+                                    data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasAddTask"
+                                    aria-controls="offcanvasAddTask">
+                                <i class='menu-icon tf-icons bx bx-plus'></i>
+                                Thêm mới nhiệm vụ
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class=" table-responsive px-md-4 px-2" id="list_work_package_project">
+                        @{ Html.RenderAction("SearchWorkPackage", "WorkPackage", new { Page = 1, search = "", projectID = Model.ID }); }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Offcanvas to add new task -->
+<div class="offcanvas offcanvas-end"
+     tabindex="-1"
+     data-bs-scroll="true"
+     id="offcanvasAddTask"
+     aria-labelledby="offcanvasAddUserLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Nhiệm vụ mới</h5>
+        <button type="button"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body mx-0 flex-grow-0">
+        <div class="add-new-user pt-0" id="addNewUserForm">
+            <input type="hidden" value="@Model.ID" id="task-add-project-id"/>
+            <div class="mb-3">
+                <label class="form-label" for="add-user-fullname">Tiêu đề</label>
+                <input type="text"
+                       class="form-control"
+                       id="add-task-subject"
+                       placeholder="Nhập tiêu đề ..."
+                       name="userFullname"
+                       aria-label="John Doe" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="add-user-email">Mô tả</label>
+                <div class="form-control p-0 pt-1">
+                    <div class="comment-toolbar border-0 border-bottom">
+                        <div class="d-flex justify-content-start">
+                            <span class="ql-formats me-0">
+                                <button class="ql-bold"></button>
+                                <button class="ql-italic"></button>
+                                <button class="ql-underline"></button>
+                                <button class="ql-list" value="ordered"></button>
+                                <button class="ql-list" value="bullet"></button>
+                                <button class="ql-link"></button>
+                                <button class="ql-image"></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="comment-editor border-0 pb-4" id="add-task-description"></div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="country">Thành viên bàn giao</label>
+                <select id="add-assignee" class="select2 form-select">
+                    <option value="">-- Chọn thành viên --</option>
+                    @foreach (var mem in ViewBag.ListUserProject)
+                    {
+                        <option value="@mem.ID">@mem.UserName</option>
+                    }
+
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="add-user-contact">Thời gian dự kiến (h)</label>
+                <input type="number"
+                       id="add-est-time"
+                       class="form-control phone-mask"
+                       placeholder="Nhập thời gian dự kiến..."
+                       aria-label="john.doe@example.com"
+                       name="userContact" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="add-user-contact">Thời gian thực tế (h)</label>
+                <input type="number"
+                       id="add-real-time"
+                       class="form-control phone-mask"
+                       placeholder="Nhập thời gian thực tế..."
+                       aria-label="john.doe@example.com"
+                       name="userContact" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="add-user-contact">Thời gian còn lại (h)</label>
+                <input type="number"
+                       id="add-left-time"
+                       class="form-control phone-mask"
+                       placeholder="Nhập thời gian còn lại..."
+                       aria-label="john.doe@example.com"
+                       name="userContact" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="country">Độ ưu tiên</label>
+                <select id="add-priority-point" class="select2 form-select">
+                    <option value="">-- Chọn độ ưu tiên --</option>
+                    <option value="@SystemParam.PRIORITY_TYPE_HOT_FIX">@SystemParam.PRIORITY_TYPE_HOT_FIX_STR</option>
+                    <option value="@SystemParam.PRIORITY_TYPE_IMMEDIATE">@SystemParam.PRIORITY_TYPE_IMMEDIATE_STR</option>
+                    <option value="@SystemParam.PRIORITY_TYPE_HIGH">@SystemParam.PRIORITY_TYPE_HIGH_STR</option>
+                    <option value="@SystemParam.PRIORITY_TYPE_NORMAL">@SystemParam.PRIORITY_TYPE_NORMAL_STR</option>
+                    <option value="@SystemParam.PRIORITY_TYPE_LOW">@SystemParam.PRIORITY_TYPE_LOW_STR</option>
+
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="add-start-date">Ngày bắt đầu</label>
+                <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="flatpickr-start-date" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="add-end-date">Ngày kết thúc</label>
+                <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="flatpickr-end-date" />
+            </div>
+            <button type="submit" class="btn btn-primary me-sm-3 me-1 " onclick="saveCreateWorkPackage()">Lưu</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Đóng</button>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Content/sneat-admin-pro/vendor/libs/quill/katex.js"></script>
+<script src="~/Content/sneat-admin-pro/vendor/libs/quill/quill.js"></script>
+<script src="~/Scripts/ScriptModel/work-package-script.js"></script>
+
+@Scripts.Render("~/Content/multiselect-dropdown/virtual-select.min.js")
+<script>
+    function projectOverview(projectID) {
+        window.location.assign("/Projects/ProjectDetail?projectID=" + projectID);
+    }
+
+    function testmultiple() {
+        var slUserProject = $('#slUserProject').val();
+        var intArray = slUserProject.map(Number); // Convert each element to an integer
+        console.log(intArray);
+    }
+
+</script>

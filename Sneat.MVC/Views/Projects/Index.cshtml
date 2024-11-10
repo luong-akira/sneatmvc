@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Views/Shared/_SneatProLayout.cshtml";
+    ViewData["title"] = "Project management";
+}
+@using Sneat.MVC.Models.DTO.User
+@using Sneat.MVC.Common
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light" @*data-i18n="User"*@>Quản lý dự án /</span> Dự án</h4>
+
+
+    <div class="card mb-4">
+        <h5 class="card-header" @*data-i18n="User"*@>Danh sách dự án</h5>
+        <div class="row mb-2  px-md-4 px-2">
+            <div class="col-md-4 offset-md-0">
+                <div class="input-group input-group-merge">
+                    <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                    <input type="text" class="form-control " id="txt-key-search" placeholder="Tên dự án" onchange="searchProject()" />
+                </div>
+            </div>
+
+        </div>
+        <div class="row mb-2 px-md-4 px-2">
+            <div class="col-md-12 mb-2">
+                @* @if (ss.PermissionTabs.Contains("createRoleTab"))
+        {
+
+        }*@
+               
+                <a title="Thêm dự án" style="float: right" class="btn btn-primary" href="/Projects/Create">
+                    <i class='menu-icon tf-icons bx bx-plus'></i>
+                    Thêm mới
+                </a>
+                @*<button class="btn btn-primary" id="shepherd-example">Start tour</button>*@
+            </div>
+        </div>
+
+        @*  @if (ss.PermissionTabs.Contains("viewRoleTab"))
+        {
+
+        }*@
+        <div class=" table-responsive px-md-4 px-2" id="list_project">
+            @{ Html.RenderAction("Search", "Projects", new { Page = 1, search = "" }); }
+        </div>
+    </div>
+
+    </div>
+
+    <div class="content-backdrop fade"></div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@Scripts.Render("~/Scripts/ScriptModel/project-script.js")

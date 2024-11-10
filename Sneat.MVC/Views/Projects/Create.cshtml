@@ -1,0 +1,286 @@
+﻿@{
+    Layout = "~/Views/Shared/_SneatProLayout.cshtml";
+    ViewData["title"] = "Update Project";
+}
+@using Sneat.MVC.Models.DTO.User;
+@using Sneat.MVC.Common
+
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4"><span style="cursor: pointer;" onclick="window.location='/Projects/Index'" class="text-muted fw-light">Quản lý dự án / Dự án / </span>Tạo mới </h4>
+
+        <div class="row mb-3">
+            <div class="col-md-12 col-xs-12">
+                <div class="mt-1 mb-1 pull-right pr-10 pb-10">
+                    <button style="float: right;" class="btn btn-primary" id="btnAdd" onclick="saveCreateProject()"> <i class='menu-icon tf-icons bx bx-plus'></i> Lưu</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="p-3 mt-1 card mb-4">
+                    <h5 class="card-header">Thông tin dự án</h5>
+                    <div class="row mt-2">
+                        <div class="col-sm-12">
+
+                            <div class="mb-3">
+                                <strong>Tên dự án</strong><span style="color:red"> *</span>
+                                <input type="text" class="form-control" id="nameCreate" name="name" required placeholder="Tên dự án">
+                            </div>
+
+                            <div class="mb-3">
+                                <strong>Mô tả</strong>
+                                <div class="form-control p-0 pt-1">
+                                    <div class="comment-toolbar border-0 border-bottom">
+                                        <div class="d-flex justify-content-start">
+                                            <span class="ql-formats me-0">
+                                                <button class="ql-bold"></button>
+                                                <button class="ql-italic"></button>
+                                                <button class="ql-underline"></button>
+                                                <button class="ql-list" value="ordered"></button>
+                                                <button class="ql-list" value="bullet"></button>
+                                                <button class="ql-link"></button>
+                                                <button class="ql-image"></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="comment-editor border-0 pb-4" id="ecommerce-category-description"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Thêm thành viên</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mt-2">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <strong>Đội nhóm</strong><span style="color:red"> *</span>
+                                    <div class="col-md-12">
+                                        <div id="slTeam"
+                                             name="native-select"
+                                             placeholder="Chọn đội nhóm nhóm"
+                                             data-search="true"
+                                             data-silent-initial-value-set="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <strong>Thành viên</strong><span style="color:red"> *</span>
+                                    <div class="col-md-12">
+                                        <div id="slUser"
+                                             name="native-select"
+                                             placeholder="Chọn thành viên"
+                                             data-search="true"
+                                             data-silent-initial-value-set="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!--<div class="col-12 col-lg-4">-->
+                <!-- Pricing Card -->
+                <!--<div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Pricing</h5>
+                    </div>
+                    <div class="card-body">-->
+                        <!-- Base Price -->
+                        <!--<div class="mb-3">
+                            <label class="form-label" for="ecommerce-product-price">Base Price</label>
+                            <input type="number"
+                                   class="form-control"
+                                   id="ecommerce-product-price"
+                                   placeholder="Price"
+                                   name="productPrice"
+                                   aria-label="Product price" />
+                        </div>-->
+                        <!-- Discounted Price -->
+                        <!--<div class="mb-3">
+                            <label class="form-label" for="ecommerce-product-discount-price">Discounted Price</label>
+                            <input type="number"
+                                   class="form-control"
+                                   id="ecommerce-product-discount-price"
+                                   placeholder="Discounted Price"
+                                   name="productDiscountedPrice"
+                                   aria-label="Product discounted price" />
+                        </div>-->
+                        <!-- Charge tax check box -->
+                        <!--<div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="price-charge-tax" checked />
+                            <label class="form-label" for="price-charge-tax"> Charge tax on this product </label>
+                        </div>-->
+                        <!-- Instock switch -->
+                        <!--<div class="d-flex justify-content-between align-items-center border-top pt-3">
+                            <span class="mb-0 h6">In stock</span>
+                            <div class="w-25 d-flex justify-content-end">
+                                <label class="switch switch-primary switch-sm me-4 pe-2">
+                                    <input type="checkbox" class="switch-input" checked="" />
+                                    <span class="switch-toggle-slider">
+                                        <span class="switch-on">
+                                            <span class="switch-off"></span>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!-- /Pricing Card -->
+                <!-- Organize Card -->
+                <!--<div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Organize</h5>
+                    </div>
+                    <div class="card-body">-->
+                        <!-- Vendor -->
+                        <!--<div class="mb-3 col ecommerce-select2-dropdown">
+                            <label class="form-label mb-1" for="vendor"> Vendor </label>
+                            <select id="vendor" class="select2 form-select" data-placeholder="Select Vendor">
+                                <option value="">Select Vendor</option>
+                                <option value="men-clothing">Men's Clothing</option>
+                                <option value="women-clothing">Women's-clothing</option>
+                                <option value="kid-clothing">Kid's-clothing</option>
+                            </select>
+                        </div>-->
+                        <!-- Category -->
+                        <!--<div class="mb-3 col ecommerce-select2-dropdown">
+                            <label class="form-label mb-1 d-flex justify-content-between align-items-center"
+                                   for="category-org">
+                                <span>Category</span><a href="javascript:void(0);" class="fw-medium">Add new category</a>
+                            </label>
+                            <select id="category-org" class="select2 form-select" data-placeholder="Select Category">
+                                <option value="">Select Category</option>
+                                <option value="Household">Household</option>
+                                <option value="Management">Management</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Office">Office</option>
+                                <option value="Automotive">Automotive</option>
+                            </select>
+                        </div>-->
+                        <!-- Collection -->
+                        <!--<div class="mb-3 col ecommerce-select2-dropdown">
+                            <label class="form-label mb-1" for="collection">Collection </label>
+                            <select id="collection" class="select2 form-select" data-placeholder="Collection">
+                                <option value="">Collection</option>
+                                <option value="men-clothing">Men's Clothing</option>
+                                <option value="women-clothing">Women's-clothing</option>
+                                <option value="kid-clothing">Kid's-clothing</option>
+                            </select>
+                        </div>-->
+                        <!-- Status -->
+                        <!--<div class="mb-3 col ecommerce-select2-dropdown">
+                            <label class="form-label mb-1" for="status-org">Status </label>
+                            <select id="status-org" class="select2 form-select" data-placeholder="Published">
+                                <option value="">Published</option>
+                                <option value="Published">Published</option>
+                                <option value="Scheduled">Scheduled</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>-->
+                        <!-- Tags -->
+                        <!--<div class="mb-3">
+                            <label for="ecommerce-product-tags" class="form-label mb-1">Tags</label>
+                            <input id="ecommerce-product-tags"
+                                   class="form-control"
+                                   name="ecommerce-product-tags"
+                                   value="Normal,Standard,Premium"
+                                   aria-label="Product Tags" />
+                        </div>
+                    </div>
+                </div>-->
+                <!-- /Organize Card -->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Content/sneat-admin-pro/vendor/libs/quill/katex.js"></script>
+<script src="~/Content/sneat-admin-pro/vendor/libs/quill/quill.js"></script>
+<script src="~/Scripts/ScriptModel/project-script.js"></script>
+
+@Scripts.Render("~/Content/multiselect-dropdown/virtual-select.min.js")
+<script>
+     var optionTeams = JSON.parse('@Html.Raw(Json.Encode(ViewBag.ListTeam))').map(function (item) {
+     return {
+         label: item.Name,
+         value: item.ID
+     }
+     });
+     VirtualSelect.init({
+         ele: '#slTeam',
+         multiple: true,
+         allOptionsSelectedText: 'All',
+         showValueAsTags: true,
+         autoSelectFirstOption: false,
+         noOfDisplayValues: 5,
+         markSearchResults: true,
+         searchGroup: true,
+         searchNormalize: true,
+         options: optionTeams,
+     });
+
+    document.querySelector('#slTeam').addEventListener('change', function (event) {
+        var selectedValues = $('#slTeam').val();
+        var optionUser = [];
+        document.querySelector('#slUser').setOptions(optionUser);
+
+        if (selectedValues.length > 0) {
+            $.ajax({
+                url: '/Projects/ListUserByTeam',
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    teamIds: selectedValues
+                }),
+                success: function (response) {
+                    console.log(response);
+                  
+                    $.each(response, function (index, item) {
+                        document.querySelector('#slUser').addOption({
+                            value: item.ID,
+                            label: item.Name,
+                        });
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error("An error occurred while fetching subsystem details:", xhr.responseText || error);
+                }
+            });
+        }
+    });
+    VirtualSelect.init({
+        ele: '#slUser',
+        multiple: true,
+        allOptionsSelectedText: 'All',
+        showValueAsTags: true,
+        autoSelectFirstOption: false,
+        noOfDisplayValues: 5,
+        markSearchResults: true,
+        searchGroup: true,
+        searchNormalize: true,
+    });
+</script>

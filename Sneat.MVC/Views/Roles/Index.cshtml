@@ -1,0 +1,153 @@
+﻿@{
+    Layout = "~/Views/Shared/_SneatProLayout.cshtml";
+    ViewData["title"] = "Role management";
+}
+@using Sneat.MVC.Models.DTO.User
+@using Sneat.MVC.Common
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light" @*data-i18n="User"*@>Quản lý tài khoản /</span> Phân quyền</h4>
+
+        <div class="card">
+            <h5 class="card-header" @*data-i18n="User"*@>Danh sách vai trò</h5>
+            <div class="row mb-2  px-md-4 px-2">
+                <div class="col-md-4 offset-md-0">
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                        <input type="text" class="form-control " id="txt-key-search" placeholder="Tên vai trò" onchange="searchRole()" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mb-2 px-md-4 px-2">
+                <div class="col-md-12 mb-2">
+                    @if (ss.PermissionTabs.Contains("createRoleTab"))
+                    {
+                        <button type="button"
+                                class="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#addRoleModal"
+                                style="float: right">
+                            <i class='menu-icon tf-icons bx bx-plus'></i>
+                            Thêm mới
+                        </button>
+                    }
+
+                    @*<button class="btn btn-primary" id="shepherd-example">Start tour</button>*@
+                </div>
+            </div>
+
+            @if (ss.PermissionTabs.Contains("viewRoleTab"))
+            {
+                <div class=" table-responsive px-md-4 px-2" id="list_role">
+                    @{ Html.RenderAction("SearchRole", "Roles", new { Page = 1, search = "" }); }
+                </div>
+            }
+                
+        </div>
+
+    </div>
+
+    <div class="content-backdrop fade"></div>
+</div>
+
+<!--modal add Role-->
+<div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel4">Tạo mới vai trò</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row col-md-12 col-12">
+                    <div class="card mb-md-0 mb-4 col-md-6 col-6">
+                        <h5 class="card-header">Thông tin</h5>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <strong>Tên vai trò</strong><span style="color:red"> *</span>
+                                <input type="text" class="form-control" id="nameCreate" name="name" required placeholder="Tên vai trò">
+                            </div>
+                            <div class="mb-3">
+                                <strong>Mô tả</strong>
+                                <textarea class="form-control" id="txtDescription" rows="2" placeholder="Mô tả chi tiết..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-md-0 mb-4 col-md-6 col-6">
+                        <h5 class="card-header">Phân quyền</h5>
+                        <div class="card-body">
+                            <div id="tree-role"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                    Đóng
+                </button>
+                <button type="button" onclick="saveCreateRole();" class="btn btn-primary"><i class='menu-icon tf-icons bx bx-plus'></i> Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modal update Role-->
+<div class="modal fade" id="updateRoleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel4">Cập nhật vai trò</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row col-md-12 col-12">
+                    <div class="card mb-md-0 mb-4 col-md-6 col-6">
+                        <h5 class="card-header">Thông tin</h5>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <input type="hidden" id="roleID" />
+                                <strong>Tên vai trò</strong><span style="color:red"> *</span>
+                                <input type="text" class="form-control" id="nameEdit" name="name" required placeholder="Tên vai trò">
+                            </div>
+                            <div class="mb-3">
+                                <strong>Mô tả</strong>
+                                <textarea class="form-control" id="txtDescriptionEdit" rows="2" placeholder="Mô tả chi tiết..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-md-0 mb-4 col-md-6 col-6">
+                        <h5 class="card-header">Phân quyền</h5>
+                        <div class="card-body">
+                            <div id="update-tree-role"></div>
+                            <input type="hidden" id="listPermissonIds" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                    Đóng
+                </button>
+                <button type="button" onclick="saveUpdateRole();" class="btn btn-primary"><i class='menu-icon tf-icons bx bx-plus'></i> Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@Scripts.Render("~/Scripts/ScriptModel/permission-scipt.js")
+@Scripts.Render("~/Scripts/ScriptModel/role-script.js")

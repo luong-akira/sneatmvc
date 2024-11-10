@@ -1,0 +1,11 @@
+﻿@{
+    TempData.Keep();
+    @* ViewData["navbarDetached"] = (ViewData["navbarDetached"] ?? "navbar-detached"); *@
+    ViewData["navbarDetached"] = (ViewData["navbarDetached"] ?? null);
+    ViewData["containerNav"] = (ViewData["containerNav"] ?? "container-fluid");
+}
+
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+     id="layout-navbar">
+    @Html.Partial("SneatProComponents/LayoutComponent/_NavbarPartial")
+</nav>

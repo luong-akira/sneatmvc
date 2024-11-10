@@ -1,0 +1,378 @@
+﻿@{
+    Layout = "~/Views/Shared/_SneatProLayout.cshtml";
+    ViewData["title"] = "Update Project";
+}
+@using Sneat.MVC.Models.DTO.User;
+@using Sneat.MVC.Models.DTO.Project;
+@using Sneat.MVC.Common
+@model ProjectOutputModel
+
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4"><span style="cursor: pointer;" onclick="window.location='/Projects/Index'" class="text-muted fw-light">Quản lý dự án / Dự án / </span>Cập nhật </h4>
+
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="p-3 mt-1 card mb-4">
+                    <h5 class="card-header">Thông tin dự án</h5>
+                    <div class="row mt-2">
+                        <div class="col-sm-12">
+
+                            <div class="mb-3">
+                                <strong>Tên dự án</strong><span style="color:red"> *</span>
+                                <input type="text" class="form-control" value="@Model.Name" id="nameCreate" name="name" required placeholder="Tên dự án">
+                            </div>
+
+                            <div class="mb-3">
+                                <strong>Mô tả</strong>
+                                <div class="form-control p-0 pt-1">
+                                    <div class="comment-toolbar border-0 border-bottom">
+                                        <div class="d-flex justify-content-start">
+                                            <span class="ql-formats me-0">
+                                                <button class="ql-bold"></button>
+                                                <button class="ql-italic"></button>
+                                                <button class="ql-underline"></button>
+                                                <button class="ql-list" value="ordered"></button>
+                                                <button class="ql-list" value="bullet"></button>
+                                                <button class="ql-link"></button>
+                                                <button class="ql-image"></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="comment-editor-edit border-0 pb-4" id="ecommerce-category-description"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Thành viên</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-2  px-md-4 px-2">
+                            <div class="col-md-4 offset-md-0">
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                                    <input type="text" class="form-control " id="txt-key-search-user-project" placeholder="Tên, email, SĐT thành viên" onchange="searchUserProject()" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-2 mt-2 px-md-4 px-2">
+                            <div class="col-md-12 mb-2">
+                                <button type="button"
+                                        class="btn btn-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#addUserToProjectModal"
+                                        style="float: right">
+                                    <i class='menu-icon tf-icons bx bx-plus'></i>
+                                    Thêm mới thành viên
+                                </button>
+                            </div>
+                        </div>
+                        <div class=" table-responsive px-md-4 px-2" id="list_user_project">
+                            @{ Html.RenderAction("SearchUserProject", "Projects", new { Page = 1, projectID = Model.ID, search = "" }); }
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--<div class="col-12 col-lg-4">-->
+                <!-- Pricing Card -->
+                <!--<div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Pricing</h5>
+                    </div>
+                    <div class="card-body">-->
+                        <!-- Base Price -->
+                        <!--<div class="mb-3">
+                            <label class="form-label" for="ecommerce-product-price">Base Price</label>
+                            <input type="number"
+                                   class="form-control"
+                                   id="ecommerce-product-price"
+                                   placeholder="Price"
+                                   name="productPrice"
+                                   aria-label="Product price" />
+                        </div>-->
+                        <!-- Discounted Price -->
+                        <!--<div class="mb-3">
+                            <label class="form-label" for="ecommerce-product-discount-price">Discounted Price</label>
+                            <input type="number"
+                                   class="form-control"
+                                   id="ecommerce-product-discount-price"
+                                   placeholder="Discounted Price"
+                                   name="productDiscountedPrice"
+                                   aria-label="Product discounted price" />
+                        </div>-->
+                        <!-- Charge tax check box -->
+                        <!--<div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="price-charge-tax" checked />
+                            <label class="form-label" for="price-charge-tax"> Charge tax on this product </label>
+                        </div>-->
+                        <!-- Instock switch -->
+                        <!--<div class="d-flex justify-content-between align-items-center border-top pt-3">
+                            <span class="mb-0 h6">In stock</span>
+                            <div class="w-25 d-flex justify-content-end">
+                                <label class="switch switch-primary switch-sm me-4 pe-2">
+                                    <input type="checkbox" class="switch-input" checked="" />
+                                    <span class="switch-toggle-slider">
+                                        <span class="switch-on">
+                                            <span class="switch-off"></span>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!-- /Pricing Card -->
+                <!-- Organize Card -->
+                <!--<div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Organize</h5>
+                    </div>
+                    <div class="card-body">-->
+                        <!-- Vendor -->
+                        <!--<div class="mb-3 col ecommerce-select2-dropdown">
+                            <label class="form-label mb-1" for="vendor"> Vendor </label>
+                            <select id="vendor" class="select2 form-select" data-placeholder="Select Vendor">
+                                <option value="">Select Vendor</option>
+                                <option value="men-clothing">Men's Clothing</option>
+                                <option value="women-clothing">Women's-clothing</option>
+                                <option value="kid-clothing">Kid's-clothing</option>
+                            </select>
+                        </div>-->
+                        <!-- Category -->
+                        <!--<div class="mb-3 col ecommerce-select2-dropdown">
+                            <label class="form-label mb-1 d-flex justify-content-between align-items-center"
+                                   for="category-org">
+                                <span>Category</span><a href="javascript:void(0);" class="fw-medium">Add new category</a>
+                            </label>
+                            <select id="category-org" class="select2 form-select" data-placeholder="Select Category">
+                                <option value="">Select Category</option>
+                                <option value="Household">Household</option>
+                                <option value="Management">Management</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Office">Office</option>
+                                <option value="Automotive">Automotive</option>
+                            </select>
+                        </div>-->
+                        <!-- Collection -->
+                        <!--<div class="mb-3 col ecommerce-select2-dropdown">
+                            <label class="form-label mb-1" for="collection">Collection </label>
+                            <select id="collection" class="select2 form-select" data-placeholder="Collection">
+                                <option value="">Collection</option>
+                                <option value="men-clothing">Men's Clothing</option>
+                                <option value="women-clothing">Women's-clothing</option>
+                                <option value="kid-clothing">Kid's-clothing</option>
+                            </select>
+                        </div>-->
+                        <!-- Status -->
+                        <!--<div class="mb-3 col ecommerce-select2-dropdown">
+                            <label class="form-label mb-1" for="status-org">Status </label>
+                            <select id="status-org" class="select2 form-select" data-placeholder="Published">
+                                <option value="">Published</option>
+                                <option value="Published">Published</option>
+                                <option value="Scheduled">Scheduled</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>-->
+                        <!-- Tags -->
+                        <!--<div class="mb-3">
+                            <label for="ecommerce-product-tags" class="form-label mb-1">Tags</label>
+                            <input id="ecommerce-product-tags"
+                                   class="form-control"
+                                   name="ecommerce-product-tags"
+                                   value="Normal,Standard,Premium"
+                                   aria-label="Product Tags" />
+                        </div>
+                    </div>
+                </div>-->
+                <!-- /Organize Card -->
+            <!--</div>-->
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="mt-1 mb-1 pull-right pr-10 pb-10">
+                    <button style="float: right;" class="btn btn-primary" id="btnAdd" onclick="saveUpdateProject(@Model.ID)"> <i class='menu-icon tf-icons bx bx-plus'></i> Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modal add User into Project-->
+<div class="modal fade" id="addUserToProjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel4">Thêm mới thành viên</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row col-md-12 col-12">
+                    <div class="row mt-2">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <strong>Đội nhóm</strong><span style="color:red"> *</span>
+                                <div class="col-md-12">
+                                    <div id="slTeam"
+                                         name="native-select"
+                                         placeholder="Chọn đội nhóm"
+                                         data-search="true"
+                                         data-silent-initial-value-set="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <strong>Thành viên</strong><span style="color:red"> *</span>
+                                <div class="col-md-12">
+                                    <div id="slUser"
+                                         name="native-select"
+                                         placeholder="Chọn thành viên"
+                                         data-search="true"
+                                         data-silent-initial-value-set="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                    Đóng
+                </button>
+                <button type="button" onclick="addUserProject(@Model.ID);" class="btn btn-primary"><i class='menu-icon tf-icons bx bx-plus'></i> Thêm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Content/sneat-admin-pro/vendor/libs/quill/katex.js"></script>
+<script src="~/Content/sneat-admin-pro/vendor/libs/quill/quill.js"></script>
+<script src="~/Scripts/ScriptModel/project-script.js"></script>
+
+@Scripts.Render("~/Content/multiselect-dropdown/virtual-select.min.js")
+
+<script>
+    $(document).ready(function () {
+
+        const commentEditor = document.querySelector('.comment-editor-edit');
+        let quill;
+
+        if (commentEditor) {
+            quill = new Quill(commentEditor, {
+                modules: {
+                    toolbar: '.comment-toolbar'
+                },
+                placeholder: 'Nhập mô tả',
+                theme: 'snow'
+            });
+
+            const existingDescription = "@Html.Raw(Model.Description)";
+            quill.clipboard.dangerouslyPasteHTML(existingDescription);
+        }
+
+        const previewTemplate = `<div class="dz-preview dz-file-preview">
+     <div class="dz-details">
+         <div class="dz-thumbnail">
+             <img data-dz-thumbnail>
+             <span class="dz-nopreview">No preview</span>
+             <div class="dz-success-mark"></div>
+             <div class="dz-error-mark"></div>
+             <div class="dz-error-message"><span data-dz-errormessage></span></div>
+             <div class="progress">
+                 <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-dz-uploadprogress></div>
+             </div>
+         </div>
+         <div class="dz-filename" data-dz-name></div>
+         <div class="dz-size" data-dz-size></div>
+     </div>
+ </div>`;
+
+    });
+
+</script>
+
+<script>
+     var optionTeams = JSON.parse('@Html.Raw(Json.Encode(ViewBag.ListTeam))').map(function (item) {
+     return {
+         label: item.Name,
+         value: item.ID
+     }
+     });
+     VirtualSelect.init({
+         ele: '#slTeam',
+         multiple: true,
+         allOptionsSelectedText: 'All',
+         showValueAsTags: true,
+         autoSelectFirstOption: false,
+         noOfDisplayValues: 5,
+         markSearchResults: true,
+         searchGroup: true,
+         searchNormalize: true,
+         options: optionTeams,
+     });
+
+    document.querySelector('#slTeam').addEventListener('change', function (event) {
+        var selectedValues = $('#slTeam').val();
+        var optionUser = [];
+        document.querySelector('#slUser').setOptions(optionUser);
+
+        if (selectedValues.length > 0) {
+            $.ajax({
+                url: '/Projects/ListUserByTeam',
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    teamIds: selectedValues
+                }),
+                success: function (response) {
+                    console.log(response);
+
+                    $.each(response, function (index, item) {
+                        document.querySelector('#slUser').addOption({
+                            value: item.ID,
+                            label: item.Name,
+                        });
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error("An error occurred while fetching subsystem details:", xhr.responseText || error);
+                }
+            });
+        }
+    });
+    VirtualSelect.init({
+        ele: '#slUser',
+        multiple: true,
+        allOptionsSelectedText: 'All',
+        showValueAsTags: true,
+        autoSelectFirstOption: false,
+        noOfDisplayValues: 5,
+        markSearchResults: true,
+        searchGroup: true,
+        searchNormalize: true,
+    });
+</script>

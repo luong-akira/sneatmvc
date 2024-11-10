@@ -1,0 +1,37 @@
+{
+  "pages": [
+    {
+      "name": "Trang chủ",
+      "icon": "bx-home-circle",
+      "url": "/Home/Index"
+    },
+    {
+      "name": "Tài khoản",
+      "icon": "bx-user",
+      "url": "/Users/Index"
+    },
+    {
+      "name": "Đội nhóm",
+      "icon": "bx-group",
+      "url": "/Teams/Index"
+    },
+    {
+      "name": "Dự án",
+      "icon": "bxl-product-hunt",
+      "url": "/Projects/Index"
+    }
+   
+  ],
+  "files": [
+   
+  ],
+  "members": [
+    {
+      "name": "John Doe",
+      "subtitle": "Admin",
+      "src": "img/avatars/1.png",
+      "url": "app-user-view-account.html"
+    }
+   
+  ]
+}

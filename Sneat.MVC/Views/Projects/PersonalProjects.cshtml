@@ -1,0 +1,188 @@
+﻿@{
+    Layout = "~/Views/Shared/_SneatProLayout.cshtml";
+    ViewData["title"] = "My Projects";
+}
+@using Sneat.MVC.Models.DTO.Project;
+@using Sneat.MVC.Models.DTO.User
+@using Sneat.MVC.Common
+@model List<ProjectOutputModel>
+@{ UserDetailOutputModel ss = (UserDetailOutputModel)HttpContext.Current.Session[SystemParam.SESSION_LOGIN];
+    if (ss == null)
+    {
+        Response.Redirect("/Home/Login");
+    }
+}
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light" @*data-i18n="User"*@>Quản lý dự án /</span> Dự án của tôi</h4>
+
+        <div class="card mb-4">
+            <div class="card-widget-separator-wrapper">
+                <div class="card-body card-widget-separator">
+                    <div class="row gy-4 gy-sm-1">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
+                                <div>
+                                    <h3 class="mb-1">24</h3>
+                                    <p class="mb-0">Dự án</p>
+                                </div>
+                                <div class="avatar me-sm-4">
+                                    <span class="avatar-initial rounded bg-label-secondary">
+                                        <i class="bx bx-user bx-sm"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <hr class="d-none d-sm-block d-lg-none me-4" />
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
+                                <div>
+                                    <h3 class="mb-1">165</h3>
+                                    <p class="mb-0">Công việc chỉ định</p>
+                                </div>
+                                <div class="avatar me-lg-4">
+                                    <span class="avatar-initial rounded bg-label-secondary">
+                                        <i class="bx bx-file bx-sm"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <hr class="d-none d-sm-block d-lg-none" />
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
+                                <div>
+                                    <h3 class="mb-1">$2.46k</h3>
+                                    <p class="mb-0">Công việc hoàn thành</p>
+                                </div>
+                                <div class="avatar me-sm-4">
+                                    <span class="avatar-initial rounded bg-label-secondary">
+                                        <i class="bx bx-check-double bx-sm"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h3 class="mb-1">$876</h3>
+                                    <p class="mb-0">Thời gian thực hiện</p>
+                                </div>
+                                <div class="avatar">
+                                    <span class="avatar-initial rounded bg-label-secondary">
+                                        <i class="bx bx-error-circle bx-sm"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h5 class="card-title m-0 me-2">Danh sách dự án</h5>
+                        <div class="dropdown">
+                            <button class="btn p-0"
+                                    type="button"
+                                    id="customerRatings"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="customerRatings">
+                                <a class="dropdown-item" href="javascript:void(0);" onclick="projectDetail();">Xem chi tiết</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Based on Task</a>
+                                <a class="dropdown-item" href="javascript:void(0);">See All</a>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="card-body">
+                        <div class="col-md col-12 mb-md-0 mb-2">
+
+                            @{
+                                if (Model.Count <= 0)
+                                {
+                                    <p>Bạn hiện đang không trong dự án nào</p>
+                                }
+                                else
+                                {
+                                    int stt = 1;
+                                    foreach (var data in Model)
+                                    {
+                                        <div class="form-check custom-option custom-option-basic mb-3">
+                                            <label class="form-check-label custom-option-content" for="@data.ID">
+                                                <input name="customRadioTemp"
+                                                       class="form-check-input"
+                                                       type="radio"
+                                                       value=""
+                                                       id="@data.ID"/>
+                                                <span class="custom-option-header">
+                                                    <span class="h6 mb-0">@data.Name</span>
+                                                    @if (data.Status == SystemParam.ACTIVE)
+                                                    {
+                                                        <span class="badge bg-label-success me-1">@data.StatusStr</span>
+                                                    }
+                                                    else if (data.Status == SystemParam.IN_ACTIVE)
+                                                    {
+                                                        <span class="badge bg-label-danger me-1">@data.StatusStr</span>
+                                                    }
+                                                </span>
+                                                <span class="custom-option-body mt-2">
+                                                    <small>@Html.Raw(HttpUtility.HtmlDecode(data.Description))</small>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        stt = stt + 1;
+                                    }
+                                }
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card mb-4">
+                    <h5 class="card-header" @*data-i18n="User"*@>Thống kê</h5>
+                    <div class="card-body">
+                        <div class="col-md col-12 mb-md-0 mb-2">
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function projectDetail() {
+        var selectedRadio = document.querySelector('input[name="customRadioTemp"]:checked');
+
+        if (selectedRadio) {
+            var id = selectedRadio.id;
+            window.location.assign("/Projects/ProjectDetail?projectID=" + id);
+        } else {
+            Swal.fire({
+                title: 'Thông báo!',
+                text: ' Vui lòng chọn một dự án!',
+                icon: 'warning',
+                customClass: {
+                    confirmButton: 'btn btn-primary'
+                },
+                buttonsStyling: false
+            });
+            return;
+        }
+    }
+
+</script>
